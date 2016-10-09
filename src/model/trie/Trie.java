@@ -74,24 +74,29 @@ public class Trie {
 	}
 
 	public static void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
-		// end of recursion
-		if (currPos == target.length() && editDist == 0) { // add to result list if end of target and end of word
-			if (node.isEndOfWord()) {
+		if (currPos == target.length() && editDist == 0) { // search upon target string complete
+			if (node.isEndOfWord()) { // search upon trie also success
 				results.add(strBuf.toString());
 			}
 			return;
 		}
 
-		if (!node.haveChild() || currPos > target.length()) { // return if no childs to search or target's been traversed or editDist's been used
+		if (!node.haveChild()) {
+			assert(node.isEndOfWord());
+		}
+
+		if (!node.haveChild() || currPos > target.length()) {
 			return;
 		}
 
 		// then let's deal with edit distance!
 		if (editDist < 0) {
-			return;
+			assert(false);
 		}
 		else if (editDist > 0) {
-			// first case: delete one character, ++ currPos, strBuf unchanged, -- editDist
+
+			// FIRST CASE
+			// delete one character, ++ currPos, strBuf unchanged, -- editDist
 			dfsWithEditDist(node, target, currPos + 1, results, strBuf, editDist - 1);
 
 			TrieNodeIterator nodeIterator = node.createIterator();
@@ -100,13 +105,15 @@ public class Trie {
 				char ch = TrieNode.getChar(pos);
 				TrieNode nextNode = (TrieNode)nodeIterator.next();
 
-				// second case: insert one character, currPos unchanged, append to strBuf, -- editDist
+				// SECOND CASE
+				// insert or append one character, currPos unchanged, append to strBuf, -- editDist
 				strBuf.append(ch);
 				dfsWithEditDist(nextNode, target, currPos, results, strBuf, editDist - 1);
 				strBuf.deleteCharAt(strBuf.length() - 1);
 
 				if (currPos < target.length()) {
-					// third case: modify one character, ++ currPos, append to strBuf, -- editDist
+					// THIRD CASE
+					// modify one character, ++ currPos, append to strBuf, -- editDist
 					if (ch != target.charAt(currPos)) {
 						strBuf.append(ch);
 						dfsWithEditDist(nextNode, target, currPos + 1, results, strBuf, editDist - 1);
@@ -123,6 +130,7 @@ public class Trie {
 			}
 		}
 		else {
+			// precise match with editDist = 0
 			TrieNode nextNode = node.findChar(target.charAt(currPos));
 			if (nextNode != null) {
 				strBuf.append(target.charAt(currPos));
