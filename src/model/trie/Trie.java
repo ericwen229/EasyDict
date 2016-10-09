@@ -75,10 +75,14 @@ public class Trie {
 
 	public static void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
 		// end of recursion
-		if (currPos == target.length() && node.isEndOfWord() && editDist == 0) { // add to result list if end of target and end of word
+		if (currPos == target.length() && editDist == 0) { // add to result list if end of target and end of word
+			if (node.isEndOfWord()) {
 				results.add(strBuf.toString());
+			}
+			return;
 		}
-		if (!node.haveChild() || currPos >= target.length()) { // return if no childs to search or target's been traversed or editDist's been used
+
+		if (!node.haveChild() || currPos > target.length()) { // return if no childs to search or target's been traversed or editDist's been used
 			return;
 		}
 
@@ -101,18 +105,20 @@ public class Trie {
 				dfsWithEditDist(nextNode, target, currPos, results, strBuf, editDist - 1);
 				strBuf.deleteCharAt(strBuf.length() - 1);
 
-				// third case: modify one character, ++ currPos, append to strBuf, -- editDist
-				if (ch != target.charAt(currPos)) {
-					strBuf.append(ch);
-					dfsWithEditDist(nextNode, target, currPos + 1, results, strBuf, editDist - 1);
-					strBuf.deleteCharAt(strBuf.length() - 1);
-				}
+				if (currPos < target.length()) {
+					// third case: modify one character, ++ currPos, append to strBuf, -- editDist
+					if (ch != target.charAt(currPos)) {
+						strBuf.append(ch);
+						dfsWithEditDist(nextNode, target, currPos + 1, results, strBuf, editDist - 1);
+						strBuf.deleteCharAt(strBuf.length() - 1);
+					}
 
-				// yield edit distance to next search
-				if (ch == target.charAt(currPos)) {
-					strBuf.append(ch);
-					dfsWithEditDist(nextNode, target, currPos + 1, results, strBuf, editDist);
-					strBuf.deleteCharAt(strBuf.length() - 1);
+					// yield edit distance to next search
+					if (ch == target.charAt(currPos)) {
+						strBuf.append(ch);
+						dfsWithEditDist(nextNode, target, currPos + 1, results, strBuf, editDist);
+						strBuf.deleteCharAt(strBuf.length() - 1);
+					}
 				}
 			}
 		}

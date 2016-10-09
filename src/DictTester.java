@@ -25,7 +25,7 @@ public class DictTester {
 		System.out.print(">>> ");
 		Scanner userIn = new Scanner(System.in);
 		while (userIn.hasNext()) {
-			ArrayList<String> results = d.search(userIn.next(), 1);
+			ArrayList<String> results = d.searchWithEditDist(userIn.next(), 2);
 			for (int i = 0; i < results.size(); ++ i) {
 				System.out.println(results.get(i));
 			}

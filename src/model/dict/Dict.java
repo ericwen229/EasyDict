@@ -25,7 +25,7 @@ public class Dict {
 		trie.insert(str);
 	}
 
-	public ArrayList<String> search(String str, int maxEditDist) {
+	public ArrayList<String> searchWithEditDist(String str, int maxEditDist) {
 		ArrayList<String> results = new ArrayList<String>();
 		BloomFilter filter = new BloomFilter(1000);
 		for (int editDist = 0; editDist <= maxEditDist; ++ editDist) {
