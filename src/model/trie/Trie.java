@@ -45,10 +45,10 @@ public class Trie {
 
 	public void printTrie() {
 		StringBuffer strBuf = new StringBuffer();
-		printTrieNode(this.root, strBuf);
+		dfsPrintAll(this.root, strBuf);
 	}
 
-	public static void printTrieNode(TrieNode node, StringBuffer strBuf) {
+	private static void dfsPrintAll(TrieNode node, StringBuffer strBuf) {
 		if (node.isEndOfWord()) {
 			System.out.println(strBuf.toString());
 		}
@@ -60,8 +60,42 @@ public class Trie {
 			int pos = nodeIterator.getPosition();
 			char ch = TrieNode.getChar(pos);
 			strBuf.append(ch);
-			TrieNode nextNode = (TrieNode)nodeIterator.next();
-			printTrieNode(nextNode, strBuf);
+			TrieNode nextNode = nodeIterator.next();
+			dfsPrintAll(nextNode, strBuf);
+			strBuf.deleteCharAt(strBuf.length() - 1);
+		}
+	}
+
+	public ArrayList<String> searchWithCommonPrefix(String target) {
+		ArrayList<String> results = new ArrayList<String>();
+		StringBuffer strBuf = new StringBuffer();
+		dfsWithCommonPrefix(this.root, target, 0, results, strBuf);
+		return results;
+	}
+
+	private static void dfsWithCommonPrefix(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf) {
+		// TODO: first match target
+		while (currPos < target.length()) { // to be matched
+			TrieNode next = node.findChar(target.charAt(currPos));
+			if (next == null) {
+				return;
+			}
+			strBuf.append(target.charAt(currPos));
+			++ currPos;
+			node = next;
+		}
+		// TODO: find all words with target as prefix
+		if (!node.isEndOfWord()) {
+			return;
+		}
+		results.add(strBuf.toString());
+		TrieNodeIterator nodeIterator = node.createIterator();
+		while (nodeIterator.hasNext()) {
+			int pos = nodeIterator.getPosition();
+			char ch = TrieNode.getChar(pos);
+			TrieNode nextNode = nodeIterator.next();
+			strBuf.append(ch);
+			dfsWithCommonPrefix(nextNode, target, currPos, results, strBuf);
 			strBuf.deleteCharAt(strBuf.length() - 1);
 		}
 	}
@@ -73,7 +107,7 @@ public class Trie {
 		return results;
 	}
 
-	public static void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
+	private static void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
 		if (currPos == target.length() && editDist == 0) { // search upon target string complete
 			if (node.isEndOfWord()) { // search upon trie also success
 				results.add(strBuf.toString());
@@ -103,7 +137,7 @@ public class Trie {
 			while (nodeIterator.hasNext()) {
 				int pos = nodeIterator.getPosition();
 				char ch = TrieNode.getChar(pos);
-				TrieNode nextNode = (TrieNode)nodeIterator.next();
+				TrieNode nextNode = nodeIterator.next();
 
 				// SECOND CASE
 				// insert or append one character, currPos unchanged, append to strBuf, -- editDist

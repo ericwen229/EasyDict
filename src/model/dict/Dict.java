@@ -41,4 +41,8 @@ public class Dict {
 		return results;
 	}
 
+	public ArrayList<String> searchWithCommonPrefix(String str) {
+		return this.trie.searchWithCommonPrefix(str);
+	}
+
 }

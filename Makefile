@@ -36,4 +36,4 @@ clean:
 	rm -frv $(CLASSPATH)/*
 
 run:
-	java -cp $(CLASSPATH) $(ENTRY_POINT)
+	java -cp $(CLASSPATH) -ea $(ENTRY_POINT)
