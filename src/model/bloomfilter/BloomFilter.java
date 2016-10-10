@@ -37,7 +37,7 @@ public class BloomFilter {
 }
 
 interface Hash {
-	public int hash(String str);
+	int hash(String str);
 }
 
 class Hash1 implements Hash {
