@@ -25,7 +25,12 @@ public class DictTester {
 		System.out.print(">>> ");
 		Scanner userIn = new Scanner(System.in);
 		while (userIn.hasNext()) {
-			ArrayList<String> results = d.searchWithCommonPrefix(userIn.next());
+			String str = userIn.next();
+			ArrayList<String> results = d.searchWithCommonPrefix(str);
+			if (results.size() == 0) {
+				System.out.println("Are you trying to search:");
+				results = d.searchWithEditDist(str, 1);
+			}
 			for (int i = 0; i < results.size(); ++ i) {
 				System.out.println(results.get(i));
 			}
