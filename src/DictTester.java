@@ -31,9 +31,7 @@ public class DictTester {
 				System.out.println("Are you trying to search:");
 				results = d.searchWithEditDist(str, 1);
 			}
-			for (int i = 0; i < results.size(); ++ i) {
-				System.out.println(results.get(i));
-			}
+			results.forEach(System.out::println);
 			System.out.print(">>> ");
 		}
 	}

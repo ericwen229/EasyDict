@@ -1,7 +1,5 @@
 package model.bloomfilter;
 
-import java.util.*;
-
 public class BloomFilter {
 
 	private boolean[] hashTable;

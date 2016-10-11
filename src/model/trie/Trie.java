@@ -19,7 +19,7 @@ public class Trie {
 		return Trie.trie;
 	}
 
-	public static boolean validString(String str) {
+	private static boolean validString(String str) {
 		if (str.length() == 0) {
 			return false;
 		}
@@ -67,7 +67,7 @@ public class Trie {
 	}
 
 	public ArrayList<String> searchWithCommonPrefix(String target) {
-		ArrayList<String> results = new ArrayList<String>();
+		ArrayList<String> results = new ArrayList<>();
 		StringBuffer strBuf = new StringBuffer();
 		dfsWithCommonPrefix(this.root, target, 0, results, strBuf);
 		return results;
@@ -101,7 +101,7 @@ public class Trie {
 	}
 
 	public ArrayList<String> searchWithEditDist(String target, int editDist) {
-		ArrayList<String> results = new ArrayList<String>();
+		ArrayList<String> results = new ArrayList<>();
 		StringBuffer strBuf = new StringBuffer();
 		dfsWithEditDist(this.root, target, 0, results, strBuf, editDist);
 		return results;

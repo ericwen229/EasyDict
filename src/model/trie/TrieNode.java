@@ -5,7 +5,7 @@ import java.util.*;
 class TrieNode {
 
 	private static final int numOfChar = 26;
-	private static final Map<Integer, Integer> charMap = new HashMap<Integer, Integer>();
+	private static final Map<Integer, Integer> charMap = new HashMap<>();
 	private static final char[] charList = new char[]{
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
 		'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
@@ -20,53 +20,48 @@ class TrieNode {
 
 	public TrieNode() {
 		this.status = TrieNodeStatus.PASS;
-		this.childs = new TrieNode[this.numOfChar];
-		for (int i = 0; i < this.numOfChar; ++ i) {
+		this.childs = new TrieNode[TrieNode.numOfChar];
+		for (int i = 0; i < TrieNode.numOfChar; ++ i) {
 			this.childs[i] = null;
-			this.charMap.put((int)('a' + i), i);
+			TrieNode.charMap.put('a' + i, i);
 		}
 	}
 
-	public TrieNodeIterator createIterator() {
+	TrieNodeIterator createIterator() {
 		return new TrieNodeIterator(this.childs);
 	}
 
-	public static char getChar(int index) {
+	static char getChar(int index) {
 		return charList[index];
 	}
 
-	public static boolean validChar(char c) {
+	static boolean validChar(char c) {
 		return charMap.containsKey((int)c);
 	}
 
-	public TrieNode findChar(char c) {
+	TrieNode findChar(char c) {
 		if (!validChar(c)) {
 			return null;
 		}
 		else {
-			return this.childs[this.charMap.get((int)c)];
+			return this.childs[TrieNode.charMap.get((int)c)];
 		}
 	}
 
-	public boolean isEndOfWord() {
+	boolean isEndOfWord() {
 		return this.status == TrieNodeStatus.ENDOFWORD;
 	}
 
-	public void setEndOfWord() {
+	void setEndOfWord() {
 		this.status = TrieNodeStatus.ENDOFWORD;
 	}
 
-	public boolean haveChild() {
-		for (int i = 0; i < this.numOfChar; ++ i) {
-			if (this.childs[i] != null) {
-				return true;
-			}
-		}
-		return false;
+	boolean haveChild() {
+		return this.createIterator().hasNext();
 	}
 
-	public TrieNode addChild(char c) {
-		int index = this.charMap.get((int)c);
+	TrieNode addChild(char c) {
+		int index = TrieNode.charMap.get((int)c);
 		if (this.childs[index] == null) {
 			this.childs[index] = new TrieNode();
 		}
@@ -80,18 +75,18 @@ class TrieNodeIterator {
 	private TrieNode[] childs;
 	private int position = 0;
 
-	public TrieNodeIterator(TrieNode[] childs) {
+	TrieNodeIterator(TrieNode[] childs) {
 		this.childs = childs;
 	}
 
-	public TrieNode next() {
+	TrieNode next() {
 		if (!hasNext()) {
 			return null;
 		}
 		return this.childs[this.position ++];
 	}
 
-	public boolean hasNext() {
+	boolean hasNext() {
 		for (int i = this.position; i < childs.length; ++ i) {
 			if (this.childs[i] != null) {
 				this.position = i;
@@ -101,7 +96,7 @@ class TrieNodeIterator {
 		return false;
 	}
 
-	public int getPosition() {
+	int getPosition() {
 		return this.position;
 	}
 
