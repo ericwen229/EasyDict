@@ -4,12 +4,13 @@ import java.util.*;
 
 class TrieNode {
 
-	private static final int numOfChar = 26;
+	private static final int numOfChar = 28;
 	private static final Map<Integer, Integer> charMap = new HashMap<>();
 	private static final char[] charList = new char[]{
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
 		'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
 		's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ',
+		'-',
 	};
 	private TrieNodeStatus status;
 	private TrieNode[] childs;
@@ -25,6 +26,8 @@ class TrieNode {
 			this.childs[i] = null;
 			TrieNode.charMap.put('a' + i, i);
 		}
+		TrieNode.charMap.put((int)' ', 26);
+		TrieNode.charMap.put((int)' ', 26);
 	}
 
 	TrieNodeIterator createIterator() {
