@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-import model.dict.*;
+import main.model.dict.*;
 
 public class DictTester {
 
@@ -13,7 +13,8 @@ public class DictTester {
 			dictFile = new File(filePath);
 			Scanner fileIn = new Scanner(dictFile);
 			while (fileIn.hasNext()) {
-				d.insert(fileIn.next());
+				String word = fileIn.next();
+				d.insert(fileIn.next(), null);
 			}
 			fileIn.close();
 		}

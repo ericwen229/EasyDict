@@ -1,6 +1,6 @@
-package model.bloomfilter;
+package main.model.dict;
 
-public class BloomFilter {
+class BloomFilter {
 
 	private boolean[] hashTable;
 	private int tableSize;
@@ -9,7 +9,7 @@ public class BloomFilter {
 		new Hash4(), new Hash5(),
 	};
 
-	public BloomFilter(int size) {
+	BloomFilter(int size) {
 		this.tableSize = size;
 		this.hashTable = new boolean[this.tableSize];
 		for (int i = 0; i < this.tableSize; ++ i) {
@@ -17,13 +17,13 @@ public class BloomFilter {
 		}
 	}
 
-	public void add(String str) {
+	void add(String str) {
 		for (int i = 0; i < hashFuncList.length; ++ i) {
 			this.hashTable[(this.hashFuncList[i].hash(str) % this.tableSize + this.tableSize) % this.tableSize] = true;
 		}
 	}
 
-	public boolean contains(String str) {
+	boolean contains(String str) {
 		for (int i = 0; i < hashFuncList.length; ++ i) {
 			if (!this.hashTable[(this.hashFuncList[i].hash(str) % this.tableSize + this.tableSize) % this.tableSize]) {
 				return false;

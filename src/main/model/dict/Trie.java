@@ -1,8 +1,8 @@
-package model.trie;
+package main.model.dict;
 
 import java.util.*;
 
-public class Trie {
+class Trie {
 
 	private TrieNode root;
 
@@ -12,7 +12,7 @@ public class Trie {
 		this.root = new TrieNode();
 	}
 
-	public static Trie createTrie() {
+	static Trie createTrie() {
 		if (Trie.trie == null) {
 			Trie.trie = new Trie();
 		}
@@ -31,7 +31,7 @@ public class Trie {
 		return true;
 	}
 
-	public boolean insert(String str) {
+	boolean insert(String str, WordInfo info) {
 		if (!validString(str)) {
 			return false;
 		}
@@ -40,10 +40,11 @@ public class Trie {
 			currentNode = currentNode.addChild(str.charAt(i));
 		}
 		currentNode.setEndOfWord();
+		currentNode.addInfo(info);
 		return true;
 	}
 
-	public void printTrie() {
+	/*public void printTrie() {
 		StringBuffer strBuf = new StringBuffer();
 		dfsPrintAll(this.root, strBuf);
 	}
@@ -64,7 +65,7 @@ public class Trie {
 			dfsPrintAll(nextNode, strBuf);
 			strBuf.deleteCharAt(strBuf.length() - 1);
 		}
-	}
+	}*/
 
 	public ArrayList<String> searchWithCommonPrefix(String target) {
 		ArrayList<String> results = new ArrayList<>();

@@ -1,8 +1,6 @@
-package model.dict;
+package main.model.dict;
 
 import java.util.*;
-import model.trie.*;
-import model.bloomfilter.*;
 
 public class Dict {
 
@@ -21,8 +19,8 @@ public class Dict {
 		return Dict.dict;
 	}
 
-	public void insert(String str) {
-		trie.insert(str);
+	public void insert(String str, WordInfo info) {
+		trie.insert(str, info);
 	}
 
 	public ArrayList<String> searchWithEditDist(String str, int maxEditDist) {

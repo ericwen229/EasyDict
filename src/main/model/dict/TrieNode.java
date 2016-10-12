@@ -1,4 +1,4 @@
-package model.trie;
+package main.model.dict;
 
 import java.util.*;
 
@@ -12,22 +12,21 @@ class TrieNode {
 		's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ',
 		'-',
 	};
-	private TrieNodeStatus status;
+
+	private boolean isEndOfWord;
+	private WordInfo info;
 	private TrieNode[] childs;
 
-	private enum TrieNodeStatus {
-		PASS, ENDOFWORD
-	}
-
 	public TrieNode() {
-		this.status = TrieNodeStatus.PASS;
+		this.isEndOfWord = false;
+		this.info = null;
 		this.childs = new TrieNode[TrieNode.numOfChar];
 		for (int i = 0; i < TrieNode.numOfChar; ++ i) {
 			this.childs[i] = null;
 			TrieNode.charMap.put('a' + i, i);
 		}
 		TrieNode.charMap.put((int)' ', 26);
-		TrieNode.charMap.put((int)' ', 26);
+		TrieNode.charMap.put((int)'-', 27);
 	}
 
 	TrieNodeIterator createIterator() {
@@ -35,15 +34,15 @@ class TrieNode {
 	}
 
 	static char getChar(int index) {
-		return charList[index];
+		return TrieNode.charList[index];
 	}
 
 	static boolean validChar(char c) {
-		return charMap.containsKey((int)c);
+		return TrieNode.charMap.containsKey((int)c);
 	}
 
 	TrieNode findChar(char c) {
-		if (!validChar(c)) {
+		if (!TrieNode.validChar(c)) {
 			return null;
 		}
 		else {
@@ -52,11 +51,15 @@ class TrieNode {
 	}
 
 	boolean isEndOfWord() {
-		return this.status == TrieNodeStatus.ENDOFWORD;
+		return this.isEndOfWord;
 	}
 
 	void setEndOfWord() {
-		this.status = TrieNodeStatus.ENDOFWORD;
+		this.isEndOfWord = true;
+	}
+
+	void addInfo(WordInfo info) {
+		this.info = info;
 	}
 
 	boolean haveChild() {
@@ -69,6 +72,42 @@ class TrieNode {
 			this.childs[index] = new TrieNode();
 		}
 		return this.childs[index];
+	}
+
+	WordInfo getInfo() {
+		return this.info;
+	}
+
+}
+
+class WordInfo {
+
+	private String phonetic;
+	private String translation;
+	private String[] explains;
+	private String[][] webExplains;
+
+	WordInfo(String phonetic, String translation, String[] explains, String[][] webExplains) {
+		this.phonetic = phonetic;
+		this.translation = translation;
+		this.explains = explains;
+		this.webExplains = webExplains;
+	}
+
+	String getPhonetic() {
+		return this.phonetic;
+	}
+
+	String getTranslation() {
+		return this.translation;
+	}
+
+	String[] getExplains() {
+		return this.explains;
+	}
+
+	String[][] getWebExplains() {
+		return this.webExplains;
 	}
 
 }
