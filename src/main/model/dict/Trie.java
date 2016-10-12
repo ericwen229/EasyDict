@@ -116,8 +116,9 @@ class Trie {
 			return;
 		}
 
-		if (!node.haveChild()) {
-			assert(node.isEndOfWord());
+		if (node.isEndOfWord() && editDist > 0 && target.length() - strBuf.length() == editDist) {
+			results.add(strBuf.toString());
+			return;
 		}
 
 		if (!node.haveChild() || currPos > target.length()) {
