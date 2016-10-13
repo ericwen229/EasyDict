@@ -1,13 +1,14 @@
-package test;
-
 import java.util.*;
 import java.io.*;
 
 import main.model.dict.*;
 
+import org.junit.*;
+
 public class DictTester {
 
-	public static void main(String[] args) {
+	@Test
+	public void searchTest() {
 		Dict d = Dict.createDict();
 
 		String filePath = "resources/dict.txt";
@@ -37,7 +38,7 @@ public class DictTester {
 					}
 				}
 				WordInfo info = new WordInfo(phonetic, translation, explains, webExplains);
-				d.insert(word.substring(0, word.length() - 1), info);
+				d.insert(word, info);
 				fileIn.nextLine();
 			}
 			fileIn.close();
@@ -48,18 +49,13 @@ public class DictTester {
 			System.exit(0);
 		}
 
-		System.out.print(">>> ");
-		Scanner userIn = new Scanner(System.in);
-		while (userIn.hasNext()) {
-			String str = userIn.next();
-			ArrayList<String> results = d.searchWithCommonPrefix(str);
-			if (results.size() == 0) {
-				System.out.println("Are you trying to search:");
-				results = d.searchWithEditDist(str, 1);
-			}
-			results.forEach(System.out::println);
-			System.out.print(">>> ");
+		String word = "a";
+		ArrayList<String> results = d.searchWithCommonPrefix(word);
+		if (results.size() == 0) {
+			System.out.println("Are you trying to search:");
+			results = d.searchWithEditDist(word, 1);
 		}
+		results.forEach(System.out::println);
 	}
 
 }

@@ -1,0 +1,25 @@
+a
+/a/
+translation: a foo
+2
+a
+a foo
+3
+a
+a foo
+a
+a foo
+a
+a foo
+
+b
+/b bar/
+translation: b foo
+1
+b foo
+2
+b
+b foo
+b
+b foo
+
