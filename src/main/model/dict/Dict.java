@@ -23,6 +23,10 @@ public class Dict {
 		trie.insert(str, info);
 	}
 
+	public void printDict() {
+		this.trie.printTrie();
+	}
+
 	public ArrayList<String> searchWithEditDist(String str, int maxEditDist) {
 		ArrayList<String> results = new ArrayList<String>();
 		BloomFilter filter = new BloomFilter(1000);

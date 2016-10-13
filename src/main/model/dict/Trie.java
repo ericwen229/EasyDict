@@ -44,7 +44,7 @@ class Trie {
 		return true;
 	}
 
-	/*public void printTrie() {
+	void printTrie() {
 		StringBuffer strBuf = new StringBuffer();
 		dfsPrintAll(this.root, strBuf);
 	}
@@ -65,9 +65,9 @@ class Trie {
 			dfsPrintAll(nextNode, strBuf);
 			strBuf.deleteCharAt(strBuf.length() - 1);
 		}
-	}*/
+	}
 
-	public ArrayList<String> searchWithCommonPrefix(String target) {
+	ArrayList<String> searchWithCommonPrefix(String target) {
 		ArrayList<String> results = new ArrayList<>();
 		StringBuffer strBuf = new StringBuffer();
 		dfsWithCommonPrefix(this.root, target, 0, results, strBuf);
@@ -86,10 +86,12 @@ class Trie {
 			node = next;
 		}
 		// TODO: find all words with target as prefix
-		if (!node.isEndOfWord()) {
+		if (node.isEndOfWord()) {
+			results.add(strBuf.toString());
+		}
+		if (!node.haveChild()) {
 			return;
 		}
-		results.add(strBuf.toString());
 		TrieNodeIterator nodeIterator = node.createIterator();
 		while (nodeIterator.hasNext()) {
 			int pos = nodeIterator.getPosition();
@@ -101,7 +103,7 @@ class Trie {
 		}
 	}
 
-	public ArrayList<String> searchWithEditDist(String target, int editDist) {
+	ArrayList<String> searchWithEditDist(String target, int editDist) {
 		ArrayList<String> results = new ArrayList<>();
 		StringBuffer strBuf = new StringBuffer();
 		dfsWithEditDist(this.root, target, 0, results, strBuf, editDist);
