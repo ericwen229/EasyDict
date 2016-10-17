@@ -8,15 +8,7 @@ class ResultPane extends JTabbedPane {
 
     private ResultPane() {
         super(JTabbedPane.TOP, JTabbedPane.WRAP_TAB_LAYOUT);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
-        this.addTab("hello", null);
+        this.addTab("Welcome", null);
     }
 
     static ResultPane createResultPane() {
