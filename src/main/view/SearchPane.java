@@ -29,6 +29,7 @@ class SearchPane extends JPanel {
     }
 
     void adjust() {
+        this.inputBox.adjust();
         this.resultList.adjust();
     }
 

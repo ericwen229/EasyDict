@@ -20,4 +20,6 @@ class SearchInputBox extends JTextField {
         return SearchInputBox.inputBox;
     }
 
+    void adjust() {}
+
 }

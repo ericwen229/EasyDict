@@ -15,4 +15,6 @@ class Result extends JList<String> {
         this.setVisible(true);
     }
 
+    void adjust() {}
+
 }

@@ -6,8 +6,7 @@ import javax.swing.*;
 class MainPane extends JSplitPane {
 
     private SearchPane searchPane;
-    // TODO: private ResultPane resultPane;
-    private JPanel resultPane;
+    private ResultPane resultPane;
 
     private static MainPane mainPane;
 
@@ -15,8 +14,7 @@ class MainPane extends JSplitPane {
         super(JSplitPane.HORIZONTAL_SPLIT, true);
 
         this.searchPane = SearchPane.createSearchPane();
-        // TODO: this.resultPane = ResultPane.createResultPane();
-        this.resultPane = new JPanel();
+        this.resultPane = ResultPane.createResultPane();
         this.setLeftComponent(this.searchPane);
         this.setRightComponent(this.resultPane);
 
@@ -32,7 +30,7 @@ class MainPane extends JSplitPane {
 
     void adjust() {
         this.searchPane.adjust();
-        // TODO: this.resultPane.adjust();
+        this.resultPane.adjust();
 
         this.setDividerLocation(0.32);
     }

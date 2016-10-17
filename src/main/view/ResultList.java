@@ -31,6 +31,9 @@ class ResultList extends JSplitPane {
     }
 
     void adjust() {
+        this.preciseResult.adjust();
+        this.fuzzyResult.adjust();
+
         this.setDividerLocation(0.5);
     }
 

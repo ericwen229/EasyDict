@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
         this.setSize(new Dimension(800, 600));
         this.setVisible(true);
 
-        this.mainPane.adjust();
+        this.adjust();
     }
 
     public static MainWindow createMainWindow() {
@@ -28,6 +28,10 @@ public class MainWindow extends JFrame {
             MainWindow.mainWindow = new MainWindow();
         }
         return MainWindow.mainWindow;
+    }
+
+    void adjust() {
+        this.mainPane.adjust();
     }
 
 }
