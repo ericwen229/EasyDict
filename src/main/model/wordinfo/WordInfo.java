@@ -1,4 +1,4 @@
-package main.wordinfo;
+package main.model.wordinfo;
 
 public class WordInfo {
 

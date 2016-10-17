@@ -1,6 +1,6 @@
 package main.model.dict;
 
-import main.wordinfo.WordInfo;
+import main.model.wordinfo.WordInfo;
 
 import java.util.*;
 
