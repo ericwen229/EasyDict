@@ -109,18 +109,18 @@ class Trie {
 	}
 
 	private static void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
-		if (currPos == target.length() && editDist == 0) { // search upon target string complete, and no available editDist
-			if (node.isEndOfWord()) { // search upon trie also success
-				results.add(strBuf.toString());
-			}
-			return;
-		}
+		boolean targetComplete = currPos == target.length() && editDist == 0;
+		boolean wordFoundInTrie = node.isEndOfWord();
+		boolean fitRestOfTarget = editDist > 0 && target.length() - strBuf.length() == editDist;
+		boolean endOfTrie = !node.haveChild();
+		boolean endOfTarget = currPos > target.length();
 
-		if (node.isEndOfWord() && editDist > 0 && target.length() - strBuf.length() == editDist) { // FOURTH CASE: editDist fits characters left in target
+		if (wordFoundInTrie
+				&& (targetComplete || fitRestOfTarget)) {
 			results.add(strBuf.toString());
 		}
 
-		if (!node.haveChild() || currPos > target.length()) { // no more search space in either target or trie
+		if (targetComplete || endOfTrie || endOfTarget) {
 			return;
 		}
 
