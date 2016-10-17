@@ -14,19 +14,19 @@ public class WordInfo {
         this.webExplains = webExplains;
     }
 
-    String getPhonetic() {
+    public String getPhonetic() {
         return this.phonetic;
     }
 
-    String getTranslation() {
+    public String getTranslation() {
         return this.translation;
     }
 
-    String[] getExplains() {
+    public String[] getExplains() {
         return this.explains;
     }
 
-    String[][] getWebExplains() {
+    public String[][] getWebExplains() {
         return this.webExplains;
     }
 
