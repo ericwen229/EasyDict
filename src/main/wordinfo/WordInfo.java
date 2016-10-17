@@ -1,4 +1,4 @@
-package main.model.dict;
+package main.wordinfo;
 
 public class WordInfo {
 

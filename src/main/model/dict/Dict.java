@@ -1,5 +1,7 @@
 package main.model.dict;
 
+import main.wordinfo.WordInfo;
+
 import java.util.*;
 
 public class Dict {
