@@ -75,7 +75,6 @@ class Trie {
 	}
 
 	private static void dfsWithCommonPrefix(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf) {
-		// TODO: first match target
 		while (currPos < target.length()) { // to be matched
 			TrieNode next = node.findChar(target.charAt(currPos));
 			if (next == null) {
@@ -85,7 +84,6 @@ class Trie {
 			++ currPos;
 			node = next;
 		}
-		// TODO: find all words with target as prefix
 		if (node.isEndOfWord()) {
 			results.add(strBuf.toString());
 		}
@@ -111,25 +109,24 @@ class Trie {
 	}
 
 	private static void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
-		if (currPos == target.length() && editDist == 0) { // search upon target string complete
+		if (currPos == target.length() && editDist == 0) { // search upon target string complete, and no available editDist
 			if (node.isEndOfWord()) { // search upon trie also success
 				results.add(strBuf.toString());
 			}
 			return;
 		}
 
-		if (node.isEndOfWord() && editDist > 0 && target.length() - strBuf.length() == editDist) {
+		if (node.isEndOfWord() && editDist > 0 && target.length() - strBuf.length() == editDist) { // FOURTH CASE: editDist fits characters left in target
 			results.add(strBuf.toString());
-			return;
 		}
 
-		if (!node.haveChild() || currPos > target.length()) {
+		if (!node.haveChild() || currPos > target.length()) { // no more search space in either target or trie
 			return;
 		}
 
 		// then let's deal with edit distance!
 		if (editDist < 0) {
-			assert(false);
+			System.exit(-1);
 		}
 		else if (editDist > 0) {
 

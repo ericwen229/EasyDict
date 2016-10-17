@@ -59,4 +59,47 @@ public class DictTest {
 		assertFalse(result.contains("olleh"));
 	}
 
+	@Test
+	public void testEditDistance() {
+		Dict d = Dict.createDict();
+
+		d.insert("hello", null);
+
+		d.insert("ello", null);
+		d.insert("hllo", null);
+		d.insert("helo", null);
+		d.insert("hell", null);
+
+		d.insert("xello", null);
+		d.insert("hxllo", null);
+		d.insert("hexlo", null);
+		d.insert("helxo", null);
+		d.insert("hellx", null);
+
+		d.insert("xhello", null);
+		d.insert("hxello", null);
+		d.insert("hexllo", null);
+		d.insert("helxlo", null);
+		d.insert("hellxo", null);
+		d.insert("hellox", null);
+
+		ArrayList<String> result = d.searchWithEditDist("hello", 1);
+		assertTrue(result.contains("hello"));
+		assertTrue(result.contains("ello"));
+		assertTrue(result.contains("hllo"));
+		assertTrue(result.contains("helo"));
+		assertTrue(result.contains("hell"));
+		assertTrue(result.contains("xello"));
+		assertTrue(result.contains("hxllo"));
+		assertTrue(result.contains("hexlo"));
+		assertTrue(result.contains("helxo"));
+		assertTrue(result.contains("hellx"));
+		assertTrue(result.contains("xhello"));
+		assertTrue(result.contains("hxello"));
+		assertTrue(result.contains("hexllo"));
+		assertTrue(result.contains("helxlo"));
+		assertTrue(result.contains("hellxo"));
+		assertTrue(result.contains("hellox"));
+	}
+
 }
