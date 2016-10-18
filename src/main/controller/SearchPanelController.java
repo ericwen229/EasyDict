@@ -10,20 +10,20 @@ import main.model.dict.Dict;
 
 import main.view.*;
 
-public class SearchPaneController implements FocusListener, DocumentListener, PropertyChangeListener {
+public class SearchPanelController implements FocusListener, DocumentListener, PropertyChangeListener {
 
     private boolean isEmpty = true;
-    private boolean lastSuccess = false;
+    private boolean isGhost = false;
 
     private final String ghostText = "Search";
 
     private final SearchInputBox inputBox;
     private final ResultList resultList;
-    private final SearchPane searchPane;
+    private final SearchPanel searchPanel;
 
-    public SearchPaneController(SearchPane searchPane) {
-        this.searchPane = searchPane;
-        this.inputBox = searchPane.getInputBox();
+    public SearchPanelController(SearchPanel searchPanel) {
+        this.searchPanel = searchPanel;
+        this.inputBox = searchPanel.getInputBox();
         this.inputBox.addFocusListener(this);
 
         this.updateState();
@@ -31,7 +31,7 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
             this.focusLost(null);
         }
 
-        this.resultList = searchPane.getResultList();
+        this.resultList = searchPanel.getResultList();
     }
 
     private void registerListeners() {
@@ -46,11 +46,13 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
 
     @Override
     public void focusGained(FocusEvent e) {
-        if (this.isEmpty) {
+        this.updateState();
+        if (this.isEmpty || this.isGhost) {
             this.unregisterListeners();
             try {
                 this.inputBox.setText("");
-                this.inputBox.setCorrectColor();
+                this.isGhost = false;
+                this.inputBox.setSuccessColor();
             } finally {
                 this.registerListeners();
             }
@@ -60,10 +62,12 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
 
     @Override
     public void focusLost(FocusEvent e) {
+        this.updateState();
         if (this.isEmpty) {
             this.unregisterListeners();
             try {
                 this.inputBox.setText(this.ghostText);
+                this.isGhost = true;
                 this.inputBox.setGhostColor();
             } finally {
                 this.registerListeners();
@@ -93,8 +97,8 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
 
     private void updateContent() {
         this.updateState();
-        this.lastSuccess = true;
-        if (!this.isEmpty) {
+        boolean lastSuccess = true;
+        if (!this.isEmpty && !this.isGhost) {
             String word = this.inputBox.getText();
             Dict d = Dict.createDict();
             ArrayList<String> preciseResult = d.searchWithCommonPrefix(word);
@@ -102,23 +106,26 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
             ResultListController resultListController = new ResultListController(this.resultList);
             resultListController.setPreciseResult(preciseResult);
             resultListController.setFuzzyResult(fuzzyResult);
-            this.lastSuccess = (preciseResult.size() > 0);
+            lastSuccess = (preciseResult.size() > 0);
         }
         else {
             ResultListController resultListController = new ResultListController(this.resultList);
             resultListController.clearPreciseResult();
             resultListController.clearFuzzyResult();
         }
-        if (this.lastSuccess) {
-            this.inputBox.setCorrectColor();
+        if (lastSuccess) {
+            this.inputBox.setSuccessColor();
         }
         else {
-            this.inputBox.setErrorColor();
+            this.inputBox.setFailColor();
         }
     }
 
     private void updateState() {
         this.isEmpty = this.inputBox.getText().length() == 0;
+        if (this.isEmpty) {
+            this.isGhost = true;
+        }
     }
 
 }

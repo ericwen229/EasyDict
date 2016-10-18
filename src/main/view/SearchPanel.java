@@ -5,12 +5,12 @@ import javax.swing.*;
 
 import main.controller.*;
 
-public class SearchPane extends JPanel {
+public class SearchPanel extends JPanel {
 
     private SearchInputBox inputBox;
     private ResultList resultList;
 
-    SearchPane() {
+    SearchPanel() {
         super();
 
         this.inputBox = new SearchInputBox();
@@ -20,7 +20,7 @@ public class SearchPane extends JPanel {
         this.add(this.inputBox, BorderLayout.NORTH);
         this.add(this.resultList, BorderLayout.CENTER);
 
-        this.inputBox.getDocument().addDocumentListener(new SearchPaneController(this));
+        this.inputBox.getDocument().addDocumentListener(new SearchPanelController(this));
     }
 
     void adjust() {

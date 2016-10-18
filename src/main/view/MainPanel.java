@@ -1,32 +1,32 @@
 package main.view;
 
-import main.controller.MainPaneController;
+import main.controller.MainPanelController;
 
 import javax.swing.*;
 
 public class MainPanel extends JSplitPane {
 
-    private SearchPane searchPane;
+    private SearchPanel searchPanel;
     private ResultPanel resultPanel;
 
     MainPanel() {
         super(JSplitPane.HORIZONTAL_SPLIT, true);
 
-        this.searchPane = new SearchPane();
+        this.searchPanel = new SearchPanel();
         this.resultPanel = new ResultPanel();
-        this.setLeftComponent(this.searchPane);
+        this.setLeftComponent(this.searchPanel);
         this.setRightComponent(this.resultPanel);
 
         this.setOneTouchExpandable(false);
 
-        MainPaneController controller = new MainPaneController(this);
-        this.searchPane.getResultList().getPreciseResult().addListSelectionListener(controller);
-        this.searchPane.getResultList().getFuzzyResult().addListSelectionListener(controller);
+        MainPanelController controller = new MainPanelController(this);
+        this.searchPanel.getResultList().getPreciseResult().addListSelectionListener(controller);
+        this.searchPanel.getResultList().getFuzzyResult().addListSelectionListener(controller);
 
     }
 
     void adjust() {
-        this.searchPane.adjust();
+        this.searchPanel.adjust();
         this.resultPanel.adjust();
 
         this.setDividerLocation(0.32);

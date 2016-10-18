@@ -1,9 +1,9 @@
 package main.controller;
 
-import main.view.Result;
-
-import javax.swing.*;
 import java.util.*;
+import javax.swing.*;
+
+import main.view.Result;
 
 public class ResultController {
 
