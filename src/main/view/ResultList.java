@@ -1,9 +1,9 @@
 package main.view;
 
+import main.controller.ResultListController;
+
 import java.util.ArrayList;
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class ResultList extends JSplitPane {
 
@@ -11,6 +11,8 @@ public class ResultList extends JSplitPane {
     private Result fuzzyResult;
 
     private static ResultList resultList;
+
+    private final ResultListController controller;
 
     private ResultList() {
         super(JSplitPane.VERTICAL_SPLIT, true);
@@ -25,6 +27,8 @@ public class ResultList extends JSplitPane {
         this.setBottomComponent(fuzzyPane);
 
         this.setOneTouchExpandable(true);
+
+        this.controller = ResultListController.createResultListController(this);
     }
 
     public static ResultList createResultList() {

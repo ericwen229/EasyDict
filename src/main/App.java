@@ -2,6 +2,7 @@ package main;
 
 import java.io.*;
 import java.util.*;
+import javax.swing.UIManager;
 
 import main.model.dict.Dict;
 import main.model.wordinfo.WordInfo;

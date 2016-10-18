@@ -29,7 +29,7 @@ public class Dict {
 		this.trie.printTrie();
 	}
 
-	public ArrayList<String> searchWithEditDist(String str, int maxEditDist, int expectedMinNum) {
+	public ArrayList<String> searchWithEditDist(String str, int maxEditDist) {
 		ArrayList<String> results = new ArrayList<>();
 		BloomFilter filter = new BloomFilter(1000);
 		for (int editDist = 0; editDist <= maxEditDist; ++ editDist) {
@@ -39,18 +39,6 @@ public class Dict {
 				if (!filter.contains(resultBuf)) {
 					results.add(resultBuf);
 					filter.add(resultBuf);
-				}
-			}
-		}
-		if (results.size() < expectedMinNum) {
-			for (int editDist = maxEditDist + 1; editDist < str.length() && results.size() < expectedMinNum; ++ editDist) {
-				ArrayList<String> tempResults = this.trie.searchWithEditDist(str, editDist);
-				for (int i = 0; i < tempResults.size(); ++ i) {
-					String resultBuf = tempResults.get(i);
-					if (!filter.contains(resultBuf)) {
-						results.add(resultBuf);
-						filter.add(resultBuf);
-					}
 				}
 			}
 		}
