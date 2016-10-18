@@ -8,11 +8,12 @@ import java.util.*;
 public class ResultController {
 
     private final Result result;
-    private static final DefaultListModel<String> model = new DefaultListModel<>();
+    private final DefaultListModel<String> model;
 
     public ResultController(Result result) {
         this.result = result;
-        this.result.setModel(ResultController.model);
+        this.model = new DefaultListModel<>();
+        this.result.setModel(this.model);
     }
 
     void setList(ArrayList<String> list) {
