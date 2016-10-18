@@ -82,7 +82,7 @@ class TrieNode {
 
 }
 
-class TrieNodeIterator {
+class TrieNodeIterator { // TODO: refactor
 
 	private TrieNode[] childs;
 	private int position = 0;

@@ -6,23 +6,31 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.beans.*;
 
-class SearchInputBox extends JTextField implements FocusListener, DocumentListener, PropertyChangeListener {
+import main.controller.SearchInputBoxController;
+
+public class SearchInputBox extends JTextField implements FocusListener, DocumentListener, PropertyChangeListener {
+
+    private final Color ghostColor = Color.LIGHT_GRAY;
+    private final Color correctColor = Color.BLACK;
+    private final Color errorColor = Color.RED;
+    private final String ghostText = "Search";
+    private final SearchInputBoxController controller;
 
     private boolean isEmpty;
-    private Color ghostColor = Color.LIGHT_GRAY;
-    private Color foregroundColor;
-    private final String ghostText = "Search";
 
     private static SearchInputBox inputBox;
 
     private SearchInputBox() {
         super();
+
         this.addFocusListener(this);
         this.registerListeners();
         this.updateState();
         if (!this.hasFocus()) {
             this.focusLost(null);
         }
+
+        this.controller = new SearchInputBoxController(this);
     }
 
 
@@ -31,11 +39,6 @@ class SearchInputBox extends JTextField implements FocusListener, DocumentListen
             SearchInputBox.inputBox = new SearchInputBox();
         }
         return SearchInputBox.inputBox;
-    }
-
-    void delete() {
-        this.unregisterListeners();
-        this.removeFocusListener(this);
     }
 
     private void registerListeners() {
@@ -50,18 +53,17 @@ class SearchInputBox extends JTextField implements FocusListener, DocumentListen
 
     private void updateState() {
         isEmpty = this.getText().length() == 0;
-        foregroundColor = this.getForeground();
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-        if (isEmpty) {
-            unregisterListeners();
+        if (this.isEmpty) {
+            this.unregisterListeners();
             try {
                 this.setText("");
-                this.setForeground(foregroundColor);
+                this.setForeground(this.correctColor);
             } finally {
-                registerListeners();
+                this.registerListeners();
             }
         }
 
@@ -69,37 +71,55 @@ class SearchInputBox extends JTextField implements FocusListener, DocumentListen
 
     @Override
     public void focusLost(FocusEvent e) {
-        if (isEmpty) {
-            unregisterListeners();
+        if (this.isEmpty) {
+            this.unregisterListeners();
             try {
-                this.setText(ghostText);
-                this.setForeground(ghostColor);
+                this.setText(this.ghostText);
+                this.setForeground(this.ghostColor);
             } finally {
-                registerListeners();
+                this.registerListeners();
             }
         }
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        updateState();
+        this.updateState();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        updateState();
+        this.updateState();
     }
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        updateState();
+        this.updateState();
+        boolean success = this.controller.update();
+        if (!success) {
+            this.setForeground(this.errorColor);
+        }
+        else {
+            this.setForeground(this.correctColor);
+        }
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        updateState();
+        this.updateState();
+        boolean success = this.controller.update();
+        if (!success) {
+            this.setForeground(this.errorColor);
+        }
+        else {
+            this.setForeground(this.correctColor);
+        }
     }
 
     void adjust() {}
+
+    public boolean isEmpty() {
+        return this.isEmpty;
+    }
 
 }

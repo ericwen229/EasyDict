@@ -1,11 +1,11 @@
 package main.view;
 
-import com.sun.org.apache.regexp.internal.RE;
-
+import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 
-class ResultList extends JSplitPane {
+public class ResultList extends JSplitPane {
 
     private Result preciseResult;
     private Result fuzzyResult;
@@ -15,15 +15,19 @@ class ResultList extends JSplitPane {
     private ResultList() {
         super(JSplitPane.VERTICAL_SPLIT, true);
 
-        this.preciseResult = new Result("Results");
-        this.fuzzyResult = new Result("Are you trying to search");
-        this.setTopComponent(this.preciseResult);
-        this.setBottomComponent(this.fuzzyResult);
+        this.preciseResult = new Result();
+        this.fuzzyResult = new Result();
+        JScrollPane precisePane = new JScrollPane(this.preciseResult);
+        JScrollPane fuzzyPane = new JScrollPane(this.fuzzyResult);
+        precisePane.setBorder(BorderFactory.createTitledBorder("Results"));
+        fuzzyPane.setBorder(BorderFactory.createTitledBorder("Are you trying to search"));
+        this.setTopComponent(precisePane);
+        this.setBottomComponent(fuzzyPane);
 
         this.setOneTouchExpandable(true);
     }
 
-    static ResultList createResultList() {
+    public static ResultList createResultList() {
         if (ResultList.resultList == null) {
             ResultList.resultList = new ResultList();
         }
@@ -35,6 +39,14 @@ class ResultList extends JSplitPane {
         this.fuzzyResult.adjust();
 
         this.setDividerLocation(0.5);
+    }
+
+    public void setPreciseResult(ArrayList<String> list) {
+        this.preciseResult.setList(list);
+    }
+
+    public void setFuzzyResult(ArrayList<String> list) {
+        this.fuzzyResult.setList(list);
     }
 
 }
