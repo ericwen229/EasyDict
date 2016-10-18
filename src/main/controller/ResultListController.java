@@ -1,6 +1,6 @@
 package main.controller;
 
-import main.view.ResultList;
+import main.view.*;
 
 import java.util.ArrayList;
 
@@ -13,19 +13,23 @@ public class ResultListController {
     }
 
     void setPreciseResult(ArrayList<String> list) {
-        this.resultList.setPreciseResult(list);
+        ResultController controller = new ResultController(resultList.getPreciseResult());
+        controller.setList(list);
     }
 
     void setFuzzyResult(ArrayList<String> list) {
-        this.resultList.setFuzzyResult(list);
+        ResultController controller = new ResultController(resultList.getFuzzyResult());
+        controller.setList(list);
     }
 
     void clearPreciseResult() {
-        this.resultList.clearPreciseResult();
+        ResultController controller = new ResultController(resultList.getPreciseResult());
+        controller.clear();
     }
 
     void clearFuzzyResult() {
-        this.resultList.clearFuzzyResult();
+        ResultController controller = new ResultController(resultList.getFuzzyResult());
+        controller.clear();
     }
 
 }

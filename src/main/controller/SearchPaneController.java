@@ -7,8 +7,8 @@ import javax.swing.event.*;
 import java.beans.*;
 
 import main.model.dict.Dict;
-import main.view.ResultList;
-import main.view.SearchInputBox;
+
+import main.view.*;
 
 public class SearchPaneController implements FocusListener, DocumentListener, PropertyChangeListener {
 
@@ -19,9 +19,11 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
 
     private final SearchInputBox inputBox;
     private final ResultList resultList;
+    private final SearchPane searchPane;
 
-    public SearchPaneController(SearchInputBox inputBox, ResultList resultList) {
-        this.inputBox = inputBox;
+    public SearchPaneController(SearchPane searchPane) {
+        this.searchPane = searchPane;
+        this.inputBox = searchPane.getInputBox();
         this.inputBox.addFocusListener(this);
 
         this.updateState();
@@ -29,7 +31,7 @@ public class SearchPaneController implements FocusListener, DocumentListener, Pr
             this.focusLost(null);
         }
 
-        this.resultList = resultList;
+        this.resultList = searchPane.getResultList();
     }
 
     private void registerListeners() {

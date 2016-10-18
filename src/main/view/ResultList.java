@@ -1,5 +1,7 @@
 package main.view;
 
+import main.controller.ResultController;
+
 import java.util.*;
 import javax.swing.*;
 
@@ -30,28 +32,12 @@ public class ResultList extends JSplitPane {
         this.setDividerLocation(0.5);
     }
 
-    Result getPreciseResult() {
+    public Result getPreciseResult() {
         return this.preciseResult;
     }
 
-    Result getFuzzyResult() {
+    public Result getFuzzyResult() {
         return this.fuzzyResult;
-    }
-
-    public void setPreciseResult(ArrayList<String> list) {
-        this.preciseResult.setList(list);
-    }
-
-    public void setFuzzyResult(ArrayList<String> list) {
-        this.fuzzyResult.setList(list);
-    }
-
-    public void clearPreciseResult() {
-        this.preciseResult.clear();
-    }
-
-    public void clearFuzzyResult() {
-        this.fuzzyResult.clear();
     }
 
 }

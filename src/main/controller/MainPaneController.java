@@ -6,13 +6,11 @@ import main.view.*;
 
 public class MainPaneController implements ListSelectionListener {
 
-    private final Result preciseResult;
-    private final Result fuzzyResult;
+    private final MainPanel mainPanel;
     private int si = 0;
 
-    public MainPaneController(Result preciseResult, Result fuzzyResult, ResultPane resultPane) {
-        this.preciseResult = preciseResult;
-        this.fuzzyResult = fuzzyResult;
+    public MainPaneController(MainPanel mainPanel) {
+        this.mainPanel = mainPanel;
     }
 
     @Override
