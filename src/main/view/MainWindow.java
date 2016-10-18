@@ -7,12 +7,10 @@ public class MainWindow extends JFrame {
 
     private MainPane mainPane;
 
-    private static MainWindow mainWindow;
-
-    private MainWindow() {
+    public MainWindow() {
         super();
 
-        this.mainPane = MainPane.createMainPane();
+        this.mainPane = new MainPane();
 
         this.setLayout(new BorderLayout());
         this.add(this.mainPane, BorderLayout.CENTER);
@@ -21,13 +19,6 @@ public class MainWindow extends JFrame {
         this.setVisible(true);
 
         this.adjust();
-    }
-
-    public static MainWindow createMainWindow() {
-        if (MainWindow.mainWindow == null) {
-            MainWindow.mainWindow = new MainWindow();
-        }
-        return MainWindow.mainWindow;
     }
 
     void adjust() {

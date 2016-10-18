@@ -8,7 +8,7 @@ public class UiTest {
 
     @Test
     public void testUi() {
-        MainWindow.createMainWindow();
+        MainWindow w = new MainWindow();
         while (true) {}
     }
 

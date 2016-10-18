@@ -2,7 +2,6 @@ package main;
 
 import java.io.*;
 import java.util.*;
-import javax.swing.UIManager;
 
 import main.model.dict.Dict;
 import main.model.wordinfo.WordInfo;
@@ -14,7 +13,7 @@ public class App {
     public static void main(String[] args) {
         String dictFilePath = "resources/dict.txt";
         App.importDict(dictFilePath);
-        MainWindow w = MainWindow.createMainWindow();
+        MainWindow w = new MainWindow();
     }
 
     public static void importDict(String dictFilePath) {

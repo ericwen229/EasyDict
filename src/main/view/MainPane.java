@@ -1,6 +1,5 @@
 package main.view;
 
-import java.awt.*;
 import javax.swing.*;
 
 class MainPane extends JSplitPane {
@@ -8,24 +7,15 @@ class MainPane extends JSplitPane {
     private SearchPane searchPane;
     private ResultPane resultPane;
 
-    private static MainPane mainPane;
-
-    private MainPane() {
+    MainPane() {
         super(JSplitPane.HORIZONTAL_SPLIT, true);
 
-        this.searchPane = SearchPane.createSearchPane();
-        this.resultPane = ResultPane.createResultPane();
+        this.searchPane = new SearchPane();
+        this.resultPane = new ResultPane();
         this.setLeftComponent(this.searchPane);
         this.setRightComponent(this.resultPane);
 
         this.setOneTouchExpandable(false);
-    }
-
-    static MainPane createMainPane() {
-        if (MainPane.mainPane == null) {
-            MainPane.mainPane = new MainPane();
-        }
-        return MainPane.mainPane;
     }
 
     void adjust() {

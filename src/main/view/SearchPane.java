@@ -1,5 +1,7 @@
 package main.view;
 
+import main.controller.SearchPaneController;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -8,24 +10,17 @@ class SearchPane extends JPanel {
     private SearchInputBox inputBox;
     private ResultList resultList;
 
-    private static SearchPane searchPane;
-
-    private SearchPane() {
+    SearchPane() {
         super();
 
-        this.inputBox = SearchInputBox.createInputBox();
-        this.resultList = ResultList.createResultList();
+        this.inputBox = new SearchInputBox();
+        this.resultList = new ResultList();
 
         this.setLayout(new BorderLayout());
         this.add(this.inputBox, BorderLayout.NORTH);
         this.add(this.resultList, BorderLayout.CENTER);
-    }
 
-    static SearchPane createSearchPane() {
-        if (SearchPane.searchPane == null) {
-            SearchPane.searchPane = new SearchPane();
-        }
-        return SearchPane.searchPane;
+        this.inputBox.getDocument().addDocumentListener(new SearchPaneController(this.inputBox, this.resultList));
     }
 
     void adjust() {

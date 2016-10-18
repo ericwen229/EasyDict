@@ -1,27 +1,30 @@
 package main.view;
 
+import java.awt.*;
 import javax.swing.*;
-
-import main.controller.SearchInputBoxController;
 
 public class SearchInputBox extends JTextField {
 
-    private static SearchInputBox inputBox;
+    private final Color ghostColor = Color.LIGHT_GRAY;
+    private final Color correctColor = Color.BLACK;
+    private final Color errorColor = Color.RED;
 
-    private SearchInputBox() {
+    SearchInputBox() {
         super();
-
-        SearchInputBoxController.createSearchInputBoxController(this);
-    }
-
-
-    static SearchInputBox createInputBox() {
-        if (SearchInputBox.inputBox == null) {
-            SearchInputBox.inputBox = new SearchInputBox();
-        }
-        return SearchInputBox.inputBox;
     }
 
     void adjust() {}
+
+    public void setCorrectColor() {
+        this.setForeground(this.correctColor);
+    }
+
+    public void setErrorColor() {
+        this.setForeground(this.errorColor);
+    }
+
+    public void setGhostColor() {
+        this.setForeground(this.ghostColor);
+    }
 
 }
