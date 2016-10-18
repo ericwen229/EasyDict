@@ -4,14 +4,14 @@ public class WordInfo {
 
     private String phonetic;
     private String translation;
-    private String[] explains;
-    private String[][] webExplains;
+    private String[] explanation;
+    private String[][] webExpla;
 
-    public WordInfo(String phonetic, String translation, String[] explains, String[][] webExplains) {
+    public WordInfo(String phonetic, String translation, String[] explanation, String[][] webExpla) {
         this.phonetic = phonetic;
         this.translation = translation;
-        this.explains = explains;
-        this.webExplains = webExplains;
+        this.explanation = explanation;
+        this.webExpla = webExpla;
     }
 
     public String getPhonetic() {
@@ -22,12 +22,12 @@ public class WordInfo {
         return this.translation;
     }
 
-    public String[] getExplains() {
-        return this.explains;
+    public String[] getExplanation() {
+        return this.explanation;
     }
 
-    public String[][] getWebExplains() {
-        return this.webExplains;
+    public String[][] getWebExpla() {
+        return this.webExpla;
     }
 
 }
