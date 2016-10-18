@@ -1,9 +1,7 @@
 package main.view;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
-
-import main.controller.MainPaneController;
 
 public class Result extends JList<String> {
 
@@ -14,7 +12,6 @@ public class Result extends JList<String> {
 
         this.setModel(this.model);
         this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.addListSelectionListener(new MainPaneController(this));
     }
 
     void adjust() {}

@@ -1,6 +1,6 @@
 package main.view;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
 
 public class ResultList extends JSplitPane {
@@ -28,6 +28,14 @@ public class ResultList extends JSplitPane {
         this.fuzzyResult.adjust();
 
         this.setDividerLocation(0.5);
+    }
+
+    Result getPreciseResult() {
+        return this.preciseResult;
+    }
+
+    Result getFuzzyResult() {
+        return this.fuzzyResult;
     }
 
     public void setPreciseResult(ArrayList<String> list) {

@@ -1,5 +1,7 @@
 package main.view;
 
+import main.controller.MainPaneController;
+
 import javax.swing.*;
 
 class MainPane extends JSplitPane {
@@ -16,6 +18,12 @@ class MainPane extends JSplitPane {
         this.setRightComponent(this.resultPane);
 
         this.setOneTouchExpandable(false);
+
+        Result preciseResult = this.searchPane.getResultList().getPreciseResult();
+        Result fuzzyResult = this.searchPane.getResultList().getFuzzyResult();
+        MainPaneController controller = new MainPaneController(preciseResult, fuzzyResult, this.resultPane);
+        preciseResult.addListSelectionListener(controller);
+        fuzzyResult.addListSelectionListener(controller);
     }
 
     void adjust() {

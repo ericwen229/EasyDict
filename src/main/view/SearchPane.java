@@ -1,9 +1,9 @@
 package main.view;
 
-import main.controller.SearchPaneController;
-
 import java.awt.*;
 import javax.swing.*;
+
+import main.controller.*;
 
 class SearchPane extends JPanel {
 
@@ -26,6 +26,10 @@ class SearchPane extends JPanel {
     void adjust() {
         this.inputBox.adjust();
         this.resultList.adjust();
+    }
+
+    ResultList getResultList() {
+        return this.resultList;
     }
 
 }
