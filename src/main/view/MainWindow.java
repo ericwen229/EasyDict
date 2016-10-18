@@ -14,7 +14,7 @@ public class MainWindow extends JFrame {
 
         this.setLayout(new BorderLayout());
         this.add(this.mainPane, BorderLayout.CENTER);
-
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(800, 600));
         this.setVisible(true);
 
