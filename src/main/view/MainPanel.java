@@ -32,4 +32,8 @@ public class MainPanel extends JSplitPane {
         this.setDividerLocation(0.32);
     }
 
+    public ResultPanel getResultPanel() {
+        return this.resultPanel;
+    }
+
 }

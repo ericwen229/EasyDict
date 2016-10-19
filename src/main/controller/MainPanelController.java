@@ -24,7 +24,8 @@ public class MainPanelController implements ListSelectionListener {
             if (word != null) {
                 Dict d = Dict.createDict();
                 WordInfo info = d.retrieveInfo(word);
-                // TODO: display detailed info
+                ResultPanelController controller = new ResultPanelController(this.mainPanel.getResultPanel());
+                controller.addTab(word, info);
             }
         }
         else {
