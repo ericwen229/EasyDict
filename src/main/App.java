@@ -14,6 +14,7 @@ public class App {
         String dictFilePath = "resources/dict.txt";
         App.importDict(dictFilePath);
         MainWindow w = new MainWindow();
+        w.setTitle("EasyDict");
     }
 
     public static void importDict(String dictFilePath) {
