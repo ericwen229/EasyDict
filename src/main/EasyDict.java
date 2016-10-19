@@ -8,11 +8,11 @@ import main.model.wordinfo.WordInfo;
 
 import main.view.MainWindow;
 
-public class App {
+public class EasyDict {
 
     public static void main(String[] args) {
         String dictFilePath = "resources/dict.txt";
-        App.importDict(dictFilePath);
+        EasyDict.importDict(dictFilePath);
         MainWindow w = new MainWindow();
         w.setTitle("EasyDict");
     }

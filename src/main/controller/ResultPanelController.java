@@ -36,15 +36,18 @@ public class ResultPanelController extends MouseAdapter {
             this.resultPanel.setWelcome(false);
         }
         else { // add tab
+            int addIndex = 0;
             if (this.currTabNum == this.maxTabNum) { // reach max num, then set last tab
-                this.resultPanel.setTitleAt(this.currTabNum - 1, word);
-                this.resultPanel.setComponentAt(this.currTabNum - 1, scrollInfoPanel);
+                addIndex = this.resultPanel.getSelectedIndex();
+                this.resultPanel.setTitleAt(addIndex, word);
+                this.resultPanel.setComponentAt(addIndex, scrollInfoPanel);
             }
             else { // add tab to last
                 this.resultPanel.addTab(word, scrollInfoPanel);
                 ++ this.currTabNum;
+                addIndex = this.currTabNum - 1;
             }
-            this.resultPanel.setSelectedIndex(this.currTabNum - 1); // select added tab (always at tail)
+            this.resultPanel.setSelectedIndex(addIndex); // select added tab (always at tail)
         }
     }
 
