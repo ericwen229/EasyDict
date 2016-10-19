@@ -1,5 +1,7 @@
 package main.view;
 
+import main.controller.ResultPanelController;
+
 import javax.swing.*;
 
 public class ResultPanel extends JTabbedPane {
@@ -11,9 +13,15 @@ public class ResultPanel extends JTabbedPane {
 
         this.addTab("Welcome", null);
         this.isWelcome = true;
+        this.addMouseListener(new ResultPanelController(this));
     }
 
     void adjust() {}
+
+    public void setWelcomeTab() {
+        this.setTitleAt(0, "Welcome");
+        this.setComponentAt(0, null);
+    }
 
     public boolean getWelcome() {
         return this.isWelcome;
