@@ -1,5 +1,6 @@
 package main.model.dict;
 
+import javafx.beans.value.WritableDoubleValue;
 import main.model.wordinfo.WordInfo;
 
 import java.util.*;
@@ -27,6 +28,10 @@ public class Dict {
 
 	public void printDict() {
 		this.trie.printTrie();
+	}
+
+	public WordInfo retrieveInfo(String word) {
+		return this.trie.retrieveInfo(word);
 	}
 
 	public ArrayList<String> searchWithEditDist(String str, int maxEditDist) {

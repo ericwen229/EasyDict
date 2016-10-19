@@ -2,6 +2,8 @@ package main.controller;
 
 import javax.swing.event.*;
 
+import main.model.dict.Dict;
+import main.model.wordinfo.WordInfo;
 import main.view.MainPanel;
 import main.view.Result;
 
@@ -18,10 +20,11 @@ public class MainPanelController implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
         if (si == 0) {
             si = 1;
-            String key = ((Result)e.getSource()).getSelectedValue();
-            if (key != null) {
-                System.out.println(key);
-                // TODO: retrieve detailed info and display
+            String word = ((Result)e.getSource()).getSelectedValue();
+            if (word != null) {
+                Dict d = Dict.createDict();
+                WordInfo info = d.retrieveInfo(word);
+                // TODO: display detailed info
             }
         }
         else {
