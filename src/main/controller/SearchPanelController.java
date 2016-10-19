@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.awt.*;
 import java.util.*;
 
 import java.awt.event.*;
@@ -47,17 +48,16 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
     @Override
     public void focusGained(FocusEvent e) {
         this.updateState();
-        if (this.isEmpty || this.isGhost) {
+        if (this.isEmpty) {
             this.unregisterListeners();
             try {
-                this.inputBox.setText("");
                 this.isGhost = false;
+                this.inputBox.setText("");
                 this.inputBox.setSuccessColor();
             } finally {
                 this.registerListeners();
             }
         }
-
     }
 
     @Override
@@ -66,8 +66,8 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
         if (this.isEmpty) {
             this.unregisterListeners();
             try {
-                this.inputBox.setText(this.ghostText);
                 this.isGhost = true;
+                this.inputBox.setText(this.ghostText);
                 this.inputBox.setGhostColor();
             } finally {
                 this.registerListeners();
@@ -98,7 +98,7 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
     private void updateContent() {
         this.updateState();
         boolean lastSuccess = true;
-        if (!this.isEmpty && !this.isGhost) {
+        if (!this.isEmpty) {
             String word = this.inputBox.getText();
             Dict d = Dict.createDict();
             ArrayList<String> preciseResult = d.searchWithCommonPrefix(word);
@@ -122,9 +122,9 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
     }
 
     private void updateState() {
-        this.isEmpty = this.inputBox.getText().length() == 0;
-        if (this.isEmpty) {
-            this.isGhost = true;
+        this.isEmpty = (this.inputBox.getText().length() == 0);
+        if (this.isGhost) {
+            this.isEmpty = true;
         }
     }
 
