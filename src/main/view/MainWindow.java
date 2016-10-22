@@ -1,12 +1,38 @@
 package main.view;
 
-import java.awt.*;
-import javax.swing.*;
+// ================================
+// Built-in modules
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+
+// ================================
+// Class MainWindow
+
+/**
+ * MainWindow of program as a frame
+ *
+ * @author ericwen229
+ * @see main.view.MainPanel
+ */
 public class MainWindow extends JFrame {
 
+	// ================================
+	// Members
+
+	/**
+	 * Reference of main panel
+	 */
 	private MainPanel mainPanel;
 
+	// ================================
+	// Member functions
+
+	/**
+	 * Default class constructor that initializes components
+	 * and their behaviours
+	 */
 	public MainWindow() {
 		super();
 
@@ -21,6 +47,9 @@ public class MainWindow extends JFrame {
 		this.adjust();
 	}
 
+	/**
+	 * Adjust appearance
+	 */
 	void adjust() {
 		this.mainPanel.adjust();
 	}

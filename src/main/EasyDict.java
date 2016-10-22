@@ -1,15 +1,35 @@
 package main;
 
-import java.io.*;
-import java.util.*;
+// ================================
+// Built-in modules
+
+import java.io.File;
+import java.util.Scanner;
+
+// ================================
+// User-defined modules
 
 import main.model.dict.Dict;
 import main.model.wordinfo.WordInfo;
 
 import main.view.MainWindow;
 
+// ================================
+// Class EasyDict
+
+/**
+ * Main app class
+ *
+ * @author ericwen229
+ * @see main.view.MainWindow
+ */
 public class EasyDict {
 
+	/**
+	 * Entrance of app
+	 *
+	 * @param args arguments (not used)
+	 */
 	public static void main(String[] args) {
 		String dictFilePath = "resources/dict.txt";
 		EasyDict.importDict(dictFilePath);
@@ -17,7 +37,12 @@ public class EasyDict {
 		w.setTitle("EasyDict");
 	}
 
-	public static void importDict(String dictFilePath) {
+	/**
+	 * Import dictionary from file
+	 *
+	 * @param dictFilePath path of dictionary file
+	 */
+	private static void importDict(String dictFilePath) {
 		Dict d = Dict.createDict();
 		try {
 			File dictFile = new File(dictFilePath);

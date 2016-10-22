@@ -21,15 +21,10 @@ import main.view.Result;
  * @see main.controller.ResultListController
  * @see main.view.Result
  */
-public class ResultController {
+class ResultController {
 
 	// ================================
 	// Members
-
-	/**
-	 * Result reference
-	 */
-	private final Result result;
 
 	/**
 	 * List model
@@ -40,15 +35,13 @@ public class ResultController {
 	// Member functions
 
 	/**
-	 * Default class constructor that initialize Result reference
-	 * and set its model
+	 * Default class constructor that sets result model
 	 *
 	 * @param        result reference of Result
 	 */
 	ResultController(Result result) {
-		this.result = result;
 		this.model = new DefaultListModel<>();
-		this.result.setModel(this.model);
+		result.setModel(this.model);
 	}
 
 	/**

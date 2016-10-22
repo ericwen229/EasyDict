@@ -1,13 +1,35 @@
-import java.util.*;
+// ================================
+// Built-in modules
 
-import main.model.dict.*;
+import java.util.ArrayList;
+
+// ================================
+// Third-party modules
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
+// ================================
+// User-defined modules
+
+import main.model.dict.Dict;
+
+// ================================
+// Class DictTest
+
+/**
+ * Tests of Dict
+ *
+ * @author ericwen229
+ * @see main.model.dict.Dict;
+ */
 public class DictTest {
 
+	/**
+	 * Test precise search of Dict
+	 */
 	@Test
 	public void testPrecise() {
 		Dict d = Dict.createDict();
@@ -31,6 +53,9 @@ public class DictTest {
 		assertTrue(d.searchWithEditDist("chuck", 0).contains("chuck"));
 	}
 
+	/**
+	 * Test with-common-prefix search of Dict
+	 */
 	@Test
 	public void testCommonPrefix() {
 		Dict d = Dict.createDict();
@@ -60,6 +85,9 @@ public class DictTest {
 		assertFalse(result.contains("olleh"));
 	}
 
+	/**
+	 * Test with-edit-distance search of Dict
+	 */
 	@Test
 	public void testEditDistance() {
 		Dict d = Dict.createDict();

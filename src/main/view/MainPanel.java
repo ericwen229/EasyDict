@@ -1,14 +1,48 @@
 package main.view;
 
+// ================================
+// Built-in modules
+
+import javax.swing.JSplitPane;
+
+// ================================
+// User-defined modules
+
 import main.controller.MainPanelController;
 
-import javax.swing.*;
+// ================================
+// Class MainPanel
 
+/**
+ * Main panel in main window as a split pane
+ *
+ * @author ericwen229
+ * @see main.view.MainWindow
+ * @see main.view.SearchPanel
+ * @see main.view.ResultPanel
+ */
 public class MainPanel extends JSplitPane {
 
+	// ================================
+	// Members
+
+	/**
+	 * search panel
+	 */
 	private SearchPanel searchPanel;
+
+	/**
+	 * result panel
+	 */
 	private ResultPanel resultPanel;
 
+	// ================================
+	// Member functions
+
+	/**
+	 * Default class constructor that initializes components
+	 * and their behaviours
+	 */
 	MainPanel() {
 		super(JSplitPane.HORIZONTAL_SPLIT, true);
 
@@ -25,6 +59,9 @@ public class MainPanel extends JSplitPane {
 
 	}
 
+	/**
+	 * Adjust appearance
+	 */
 	void adjust() {
 		this.searchPanel.adjust();
 		this.resultPanel.adjust();
@@ -32,6 +69,11 @@ public class MainPanel extends JSplitPane {
 		this.setDividerLocation(0.32);
 	}
 
+	/**
+	 * Get reference of result panel
+	 *
+	 * @return ResultPanel reference
+	 */
 	public ResultPanel getResultPanel() {
 		return this.resultPanel;
 	}

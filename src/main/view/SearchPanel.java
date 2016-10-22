@@ -1,9 +1,9 @@
 package main.view;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
-import main.controller.*;
+import main.controller.SearchPanelController;
 
 public class SearchPanel extends JPanel {
 
