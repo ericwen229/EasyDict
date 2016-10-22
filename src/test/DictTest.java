@@ -3,6 +3,7 @@ import java.util.*;
 import main.model.dict.*;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class DictTest {

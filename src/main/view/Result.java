@@ -5,12 +5,13 @@ import javax.swing.*;
 
 public class Result extends JList<String> {
 
-    Result() {
-        super();
+	Result() {
+		super();
 
-        this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    }
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	}
 
-    void adjust() {}
+	void adjust() {
+	}
 
 }

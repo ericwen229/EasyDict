@@ -1,35 +1,77 @@
 package main.controller;
 
-import main.view.*;
+// ================================
+// Built-in modules
 
 import java.util.ArrayList;
 
-public class ResultListController {
+// ================================
+// User-defined modules
 
-    private final ResultList resultList;
+import main.view.ResultList;
 
-    public ResultListController(ResultList resultList) {
-        this.resultList = resultList;
-    }
+// ================================
+// Class ResultListController
 
-    void setPreciseResult(ArrayList<String> list) {
-        ResultController controller = new ResultController(resultList.getPreciseResult());
-        controller.setList(list);
-    }
+/**
+ * Update ResultList content
+ */
+class ResultListController {
 
-    void setFuzzyResult(ArrayList<String> list) {
-        ResultController controller = new ResultController(resultList.getFuzzyResult());
-        controller.setList(list);
-    }
+	// ================================
+	// Members
 
-    void clearPreciseResult() {
-        ResultController controller = new ResultController(resultList.getPreciseResult());
-        controller.clear();
-    }
+	/**
+	 * ResultList reference
+	 */
+	private final ResultList resultList;
 
-    void clearFuzzyResult() {
-        ResultController controller = new ResultController(resultList.getFuzzyResult());
-        controller.clear();
-    }
+	// ================================
+	// Member functions
+
+	/**
+	 * Default class constructor that initializes ResultList reference
+	 *
+	 * @param resultList reference of ResultList
+	 */
+	ResultListController(ResultList resultList) {
+		this.resultList = resultList;
+	}
+
+	/**
+	 * Set precise result
+	 *
+	 * @param list precise result
+	 */
+	void setPreciseResult(ArrayList<String> list) {
+		ResultController controller = new ResultController(resultList.getPreciseResult());
+		controller.setList(list);
+	}
+
+	/**
+	 * Set fuzzy result
+	 *
+	 * @param list fuzzy result
+	 */
+	void setFuzzyResult(ArrayList<String> list) {
+		ResultController controller = new ResultController(resultList.getFuzzyResult());
+		controller.setList(list);
+	}
+
+	/**
+	 * Clear precise result
+	 */
+	void clearPreciseResult() {
+		ResultController controller = new ResultController(resultList.getPreciseResult());
+		controller.clear();
+	}
+
+	/**
+	 * Clear fuzzy result
+	 */
+	void clearFuzzyResult() {
+		ResultController controller = new ResultController(resultList.getFuzzyResult());
+		controller.clear();
+	}
 
 }

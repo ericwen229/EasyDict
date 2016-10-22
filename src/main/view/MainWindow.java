@@ -5,24 +5,24 @@ import javax.swing.*;
 
 public class MainWindow extends JFrame {
 
-    private MainPanel mainPanel;
+	private MainPanel mainPanel;
 
-    public MainWindow() {
-        super();
+	public MainWindow() {
+		super();
 
-        this.mainPanel = new MainPanel();
+		this.mainPanel = new MainPanel();
 
-        this.setLayout(new BorderLayout());
-        this.add(this.mainPanel, BorderLayout.CENTER);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(800, 600));
-        this.setVisible(true);
+		this.setLayout(new BorderLayout());
+		this.add(this.mainPanel, BorderLayout.CENTER);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(new Dimension(800, 600));
+		this.setVisible(true);
 
-        this.adjust();
-    }
+		this.adjust();
+	}
 
-    void adjust() {
-        this.mainPanel.adjust();
-    }
+	void adjust() {
+		this.mainPanel.adjust();
+	}
 
 }

@@ -1,28 +1,71 @@
 package main.controller;
 
-import java.util.*;
-import javax.swing.*;
+// ================================
+// Built-in modules
+
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
+// ================================
+// User-Defined modules
 
 import main.view.Result;
 
+// ================================
+// Class ResultController
+
+/**
+ * Update Result content
+ *
+ * @author ericwen229
+ * @see main.controller.ResultListController
+ * @see main.view.Result
+ */
 public class ResultController {
 
-    private final Result result;
-    private final DefaultListModel<String> model;
+	// ================================
+	// Members
 
-    public ResultController(Result result) {
-        this.result = result;
-        this.model = new DefaultListModel<>();
-        this.result.setModel(this.model);
-    }
+	/**
+	 * Result reference
+	 */
+	private final Result result;
 
-    void setList(ArrayList<String> list) {
-        this.clear();
-        list.forEach(this.model::addElement);
-    }
+	/**
+	 * List model
+	 */
+	private final DefaultListModel<String> model;
 
-    void clear() {
-        this.model.clear();
-    }
+	// ================================
+	// Member functions
+
+	/**
+	 * Default class constructor that initialize Result reference
+	 * and set its model
+	 *
+	 * @param        result reference of Result
+	 */
+	ResultController(Result result) {
+		this.result = result;
+		this.model = new DefaultListModel<>();
+		this.result.setModel(this.model);
+	}
+
+	/**
+	 * Set Result content with given list
+	 *
+	 * @param        list content to be set
+	 */
+	void setList(ArrayList<String> list) {
+		this.clear();
+		list.forEach(this.model::addElement);
+	}
+
+	/**
+	 * Clear content of Result
+	 */
+	void clear() {
+		this.model.clear();
+	}
 
 }

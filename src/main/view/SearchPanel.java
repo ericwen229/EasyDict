@@ -7,33 +7,33 @@ import main.controller.*;
 
 public class SearchPanel extends JPanel {
 
-    private SearchInputBox inputBox;
-    private ResultList resultList;
+	private SearchInputBox inputBox;
+	private ResultList resultList;
 
-    SearchPanel() {
-        super();
+	SearchPanel() {
+		super();
 
-        this.inputBox = new SearchInputBox();
-        this.resultList = new ResultList();
+		this.inputBox = new SearchInputBox();
+		this.resultList = new ResultList();
 
-        this.setLayout(new BorderLayout());
-        this.add(this.inputBox, BorderLayout.NORTH);
-        this.add(this.resultList, BorderLayout.CENTER);
+		this.setLayout(new BorderLayout());
+		this.add(this.inputBox, BorderLayout.NORTH);
+		this.add(this.resultList, BorderLayout.CENTER);
 
-        this.inputBox.getDocument().addDocumentListener(new SearchPanelController(this));
-    }
+		this.inputBox.getDocument().addDocumentListener(new SearchPanelController(this));
+	}
 
-    void adjust() {
-        this.inputBox.adjust();
-        this.resultList.adjust();
-    }
+	void adjust() {
+		this.inputBox.adjust();
+		this.resultList.adjust();
+	}
 
-    public SearchInputBox getInputBox() {
-        return this.inputBox;
-    }
+	public SearchInputBox getInputBox() {
+		return this.inputBox;
+	}
 
-    public ResultList getResultList() {
-        return this.resultList;
-    }
+	public ResultList getResultList() {
+		return this.resultList;
+	}
 
 }

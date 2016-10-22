@@ -1,29 +1,80 @@
 package main.controller;
 
-import java.awt.*;
-import java.util.*;
+// ================================
+// Built-in modules
 
-import java.awt.event.*;
-import javax.swing.event.*;
-import java.beans.*;
+import java.util.ArrayList;
+
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
+
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+
+// ================================
+// User-defined modules
 
 import main.model.dict.Dict;
+import main.view.SearchInputBox;
+import main.view.ResultList;
+import main.view.SearchPanel;
 
-import main.view.*;
+// ================================
+// Class SearchPanelController
 
+/**
+ * Display ghost text and perform search in real time
+ * when user input changes
+ *
+ * @author ericwen229
+ * @see main.view.SearchInputBox
+ * @see main.view.SearchPanel
+ * @see main.view.SearchInputBox
+ * @see main.view.ResultList
+ */
 public class SearchPanelController implements FocusListener, DocumentListener, PropertyChangeListener {
 
+	// ================================
+	// Members
+
+	/**
+	 * true if input box is empty or contains ghost text
+	 */
     private boolean isEmpty = true;
+
+	/**
+	 * true if input box contains ghost text
+	 */
     private boolean isGhost = false;
 
+	/**
+	 * ghost text
+	 */
     private final String ghostText = "Search";
 
+	/**
+	 * SearchInputBox reference
+	 */
     private final SearchInputBox inputBox;
-    private final ResultList resultList;
-    private final SearchPanel searchPanel;
 
+	/**
+	 * ResultList reference
+	 */
+    private final ResultList resultList;
+
+	// ================================
+	// Member functions
+
+	/**
+	 * Default class constructor to initialize references
+	 * and update states
+	 *
+	 * @param searchPanel reference of SearchPanel
+	 */
     public SearchPanelController(SearchPanel searchPanel) {
-        this.searchPanel = searchPanel;
         this.inputBox = searchPanel.getInputBox();
         this.inputBox.addFocusListener(this);
 
@@ -35,17 +86,29 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
         this.resultList = searchPanel.getResultList();
     }
 
-    private void registerListeners() {
+	/**
+	 * Register listeners to respond to events
+	 */
+	private void registerListeners() {
         this.inputBox.getDocument().addDocumentListener(this);
         this.inputBox.addPropertyChangeListener("foreground", this);
     }
 
-    private void unregisterListeners() {
+	/**
+	 * Unregister listeners temporarily
+	 */
+	private void unregisterListeners() {
         this.inputBox.getDocument().removeDocumentListener(this);
         this.inputBox.removePropertyChangeListener("foreground", this);
     }
 
-    @Override
+	/**
+	 * When focus is gained and input box is empty,
+	 * clear ghost text and set text color
+	 *
+	 * @param e focus event
+	 */
+	@Override
     public void focusGained(FocusEvent e) {
         this.updateState();
         if (this.isEmpty) {
@@ -60,7 +123,13 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
         }
     }
 
-    @Override
+	/**
+	 * When focus is lost and input ox is empty,
+	 * set ghost text and set text color
+	 *
+	 * @param e focus event
+	 */
+	@Override
     public void focusLost(FocusEvent e) {
         this.updateState();
         if (this.isEmpty) {
@@ -75,45 +144,68 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
         }
     }
 
-    @Override
+	/**
+	 * Update states when property change is detected
+	 *
+	 * @param evt property change event
+	 */
+	@Override
     public void propertyChange(PropertyChangeEvent evt) {
         this.updateState();
     }
 
-    @Override
+	/**
+	 * Update states when document property change is detected
+	 *
+	 * @param e document event
+	 */
+	@Override
     public void changedUpdate(DocumentEvent e) {
         this.updateState();
     }
 
-    @Override
+	/**
+	 * Perform search when content of input box changes
+	 *
+	 * @param e document event
+	 */
+	@Override
     public void insertUpdate(DocumentEvent e) {
         this.updateContent();
     }
 
-    @Override
+	/**
+	 * Perform search when content of input box changes
+	 *
+	 * @param e document event
+	 */
+	@Override
     public void removeUpdate(DocumentEvent e) {
         this.updateContent();
     }
 
-    private void updateContent() {
+	/**
+	 * Perform search using current content in input box
+	 */
+	private void updateContent() {
         this.updateState();
         boolean lastSuccess = true;
-        if (!this.isEmpty) {
+        if (!this.isEmpty) { // Not empty then search
             String word = this.inputBox.getText();
             Dict d = Dict.createDict();
             ArrayList<String> preciseResult = d.searchWithCommonPrefix(word);
-            ArrayList<String> fuzzyResult = d.searchWithEditDist(word, 2);
+            ArrayList<String> fuzzyResult = d.searchWithEditDist(word, 1);
             ResultListController resultListController = new ResultListController(this.resultList);
             resultListController.setPreciseResult(preciseResult);
             resultListController.setFuzzyResult(fuzzyResult);
-            lastSuccess = (preciseResult.size() > 0);
+            lastSuccess = (preciseResult.size() > 0); // Last search success
         }
-        else {
+        else { // Clear result list
             ResultListController resultListController = new ResultListController(this.resultList);
             resultListController.clearPreciseResult();
             resultListController.clearFuzzyResult();
         }
-        if (lastSuccess) {
+        if (lastSuccess) { // Set text color of input box
             this.inputBox.setSuccessColor();
         }
         else {
@@ -121,7 +213,10 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
         }
     }
 
-    private void updateState() {
+	/**
+	 * Update states
+	 */
+	private void updateState() {
         this.isEmpty = (this.inputBox.getText().length() == 0);
         if (this.isGhost) {
             this.isEmpty = true;
