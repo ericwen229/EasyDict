@@ -6,6 +6,8 @@ package main;
 import java.io.File;
 import java.util.Scanner;
 
+import javax.swing.UIManager;
+
 // ================================
 // User-defined modules
 
@@ -31,6 +33,12 @@ public class EasyDict {
 	 * @param args arguments (not used)
 	 */
 	public static void main(String[] args) {
+		try {
+			System.setProperty("apple.laf.useScreenMenuBar", "true");
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "EasyDict");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+		}
 		String dictFilePath = "resources/dict.txt";
 		EasyDict.importDict(dictFilePath);
 		MainWindow w = new MainWindow();

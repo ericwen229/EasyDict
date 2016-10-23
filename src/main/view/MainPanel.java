@@ -27,12 +27,12 @@ public class MainPanel extends JSplitPane {
 	// Members
 
 	/**
-	 * search panel
+	 * Search panel
 	 */
 	private SearchPanel searchPanel;
 
 	/**
-	 * result panel
+	 * Result panel
 	 */
 	private ResultPanel resultPanel;
 
