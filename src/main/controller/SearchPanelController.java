@@ -65,6 +65,11 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
 	 */
     private final ResultList resultList;
 
+	/**
+	 * Maximum result number searched with common prefix
+	 */
+	private final int maxNumWithCommonPrefix = 32;
+
 	// ================================
 	// Member functions
 
@@ -193,7 +198,7 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
         if (!this.isEmpty) { // Not empty then search
             String word = this.inputBox.getText();
             Dict d = Dict.createDict();
-            ArrayList<String> preciseResult = d.searchWithCommonPrefix(word);
+            ArrayList<String> preciseResult = d.searchWithCommonPrefix(word, this.maxNumWithCommonPrefix);
             ArrayList<String> fuzzyResult = d.searchWithEditDist(word, 1);
             ResultListController resultListController = new ResultListController(this.resultList);
             resultListController.setPreciseResult(preciseResult);

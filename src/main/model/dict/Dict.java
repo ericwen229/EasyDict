@@ -128,8 +128,8 @@ public class Dict {
 	 * @param str string to be searched
 	 * @return search result list
 	 */
-	public ArrayList<String> searchWithCommonPrefix(String str) {
-		return this.trie.searchWithCommonPrefix(str);
+	public ArrayList<String> searchWithCommonPrefix(String str, int maxNum) {
+		return this.trie.searchWithCommonPrefix(str, maxNum);
 	}
 
 }

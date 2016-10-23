@@ -1,9 +1,18 @@
 package main.view;
 
+// ================================
+// Built-in modules
+
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
+// ================================
+// User-defined modules
+
 import main.controller.SearchPanelController;
+
+// ================================
+// Class SearchPanel
 
 public class SearchPanel extends JPanel {
 

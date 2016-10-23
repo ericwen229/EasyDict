@@ -40,11 +40,11 @@ public class DictTest {
 		d.insert("price", null);
 		d.insert("chuck", null);
 
-		assertTrue(d.searchWithCommonPrefix("eric").contains("eric"));
-		assertTrue(d.searchWithCommonPrefix("arya").contains("arya"));
-		assertTrue(d.searchWithCommonPrefix("frank").contains("frank"));
-		assertTrue(d.searchWithCommonPrefix("price").contains("price"));
-		assertTrue(d.searchWithCommonPrefix("chuck").contains("chuck"));
+		assertTrue(d.searchWithCommonPrefix("eric", 10).contains("eric"));
+		assertTrue(d.searchWithCommonPrefix("arya", 10).contains("arya"));
+		assertTrue(d.searchWithCommonPrefix("frank", 10).contains("frank"));
+		assertTrue(d.searchWithCommonPrefix("price", 10).contains("price"));
+		assertTrue(d.searchWithCommonPrefix("chuck", 10).contains("chuck"));
 
 		assertTrue(d.searchWithEditDist("eric", 0).contains("eric"));
 		assertTrue(d.searchWithEditDist("arya", 0).contains("arya"));
@@ -72,7 +72,7 @@ public class DictTest {
 		d.insert("hallo", null);
 		d.insert("olleh", null);
 
-		ArrayList<String> result = d.searchWithCommonPrefix("hello");
+		ArrayList<String> result = d.searchWithCommonPrefix("hello", 10);
 		assertTrue(result.contains("hello"));
 		assertTrue(result.contains("hello there"));
 		assertTrue(result.contains("hello world"));

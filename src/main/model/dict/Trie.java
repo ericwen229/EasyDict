@@ -139,10 +139,10 @@ class Trie {
 	 * @param str word to be searched
 	 * @return search result list
 	 */
-	ArrayList<String> searchWithCommonPrefix(String str) {
+	ArrayList<String> searchWithCommonPrefix(String str, int maxNum) {
 		ArrayList<String> results = new ArrayList<>();
 		StringBuffer strBuf = new StringBuffer();
-		this.dfsWithCommonPrefix(this.root, str, 0, results, strBuf);
+		this.dfsWithCommonPrefix(this.root, str, 0, results, strBuf, maxNum);
 		return results;
 	}
 
@@ -157,7 +157,7 @@ class Trie {
 	 * @param        results search result list
 	 * @param        strBuf string buffer storing DFS path (i.e. part of word)
 	 */
-	private void dfsWithCommonPrefix(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf) {
+	private void dfsWithCommonPrefix(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int maxNum) {
 		while (currPos < target.length()) { // First match target word
 			TrieNode next = node.findChar(target.charAt(currPos));
 			if (next == null) { // Fail to match
@@ -169,6 +169,9 @@ class Trie {
 		}
 		if (node.isEndOfWord()) { // Add to result
 			results.add(strBuf.toString());
+			if (results.size() == maxNum) {
+				return;
+			}
 		}
 		if (!node.haveChild()) { // Reached leaf
 			return;
@@ -178,7 +181,7 @@ class Trie {
 			char ch = nodeIterator.getNextChar();
 			TrieNode nextNode = nodeIterator.next();
 			strBuf.append(ch);
-			this.dfsWithCommonPrefix(nextNode, target, currPos, results, strBuf);
+			this.dfsWithCommonPrefix(nextNode, target, currPos, results, strBuf, maxNum);
 			strBuf.deleteCharAt(strBuf.length() - 1);
 		}
 	}
