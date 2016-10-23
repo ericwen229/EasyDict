@@ -59,6 +59,10 @@ public class ResultPanelController extends MouseAdapter {
 		this.currTabNum = this.resultPanel.getTabCount();
 	}
 
+	boolean haveWord(String word) {
+		return this.resultPanel.indexOfTab(word) != -1;
+	}
+
 	/**
 	 * Add a tab to ResultPanel with given word and information
 	 * (not necessarily add when word is in panel or tab number

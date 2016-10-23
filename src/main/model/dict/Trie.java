@@ -168,10 +168,10 @@ class Trie {
 			node = next; // Go down along one branch
 		}
 		if (node.isEndOfWord()) { // Add to result
-			results.add(strBuf.toString());
 			if (results.size() == maxNum) {
 				return;
 			}
+			results.add(strBuf.toString());
 		}
 		if (!node.haveChild()) { // Reached leaf
 			return;

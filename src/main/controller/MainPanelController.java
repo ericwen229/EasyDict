@@ -38,11 +38,6 @@ public class MainPanelController implements ListSelectionListener {
 	 */
 	private final MainPanel mainPanel;
 
-	/**
-	 * flag to ensure change of value is detected only once
-	 */
-	private boolean si = true;
-
 	// ================================
 	// Member functions
 
@@ -62,17 +57,15 @@ public class MainPanelController implements ListSelectionListener {
 	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		if (si) {
-			si = false;
-			String word = ((Result) e.getSource()).getSelectedValue();
-			if (word != null) {
-				Dict d = Dict.createDict();
-				WordInfo info = d.retrieveInfo(word);
-				ResultPanelController controller = new ResultPanelController(this.mainPanel.getResultPanel());
-				controller.addTab(word, info);
+		String word = ((Result) e.getSource()).getSelectedValue();
+		if (word != null) {
+			ResultPanelController controller = new ResultPanelController(this.mainPanel.getResultPanel());
+			if (controller.haveWord(word)) {
+				return;
 			}
-		} else {
-			si = true;
+			Dict d = Dict.createDict();
+			WordInfo info = d.retrieveInfo(word);
+			controller.addTab(word, info);
 		}
 	}
 
