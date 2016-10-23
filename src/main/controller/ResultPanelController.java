@@ -38,7 +38,7 @@ public class ResultPanelController extends MouseAdapter {
 	/**
 	 * Maximum number of tabs
 	 */
-	private final int maxTabNum = 5;
+	private final int maxTabNum = 4;
 
 	/**
 	 * Current number of tabs
@@ -59,8 +59,26 @@ public class ResultPanelController extends MouseAdapter {
 		this.currTabNum = this.resultPanel.getTabCount();
 	}
 
+	/**
+	 * Tells if current tabs contain given word
+	 *
+	 * @param word word to be tested
+	 * @return true if current tabs contain given word
+	 */
 	boolean haveWord(String word) {
 		return this.resultPanel.indexOfTab(word) != -1;
+	}
+
+	/**
+	 * Select tab that contains given word
+	 *
+	 * @param word word to be selected
+	 */
+	void selectWord(String word) {
+		int index = this.resultPanel.indexOfTab(word);
+		if (index != -1) {
+			this.resultPanel.setSelectedIndex(index);
+		}
 	}
 
 	/**

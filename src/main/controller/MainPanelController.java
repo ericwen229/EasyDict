@@ -61,6 +61,7 @@ public class MainPanelController implements ListSelectionListener {
 		if (word != null) {
 			ResultPanelController controller = new ResultPanelController(this.mainPanel.getResultPanel());
 			if (controller.haveWord(word)) {
+				controller.selectWord(word);
 				return;
 			}
 			Dict d = Dict.createDict();
