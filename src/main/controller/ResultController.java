@@ -37,7 +37,7 @@ class ResultController {
 	/**
 	 * Default class constructor that sets result model
 	 *
-	 * @param        result reference of Result
+	 * @param result reference of Result
 	 */
 	ResultController(Result result) {
 		this.model = new DefaultListModel<>();
@@ -47,7 +47,7 @@ class ResultController {
 	/**
 	 * Set Result content with given list
 	 *
-	 * @param        list content to be set
+	 * @param list content to be set
 	 */
 	void setList(ArrayList<String> list) {
 		this.clear();

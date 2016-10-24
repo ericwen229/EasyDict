@@ -54,7 +54,7 @@ public class ResultPanel extends JTabbedPane {
 	/**
 	 * Set the first tab to welcome tab
 	 */
-	public void setWelcomeTab() {
+	public void setWelcomeTab() { // TODO: add user guide here
 		this.setTitleAt(0, "Welcome");
 		this.setComponentAt(0, null);
 	}

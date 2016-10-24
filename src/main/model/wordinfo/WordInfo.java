@@ -7,7 +7,6 @@ package main.model.wordinfo;
  * Stores read-only information about a word
  *
  * @author ericwen229
- * @see main.model.dict.TrieNode
  * @see main.controller.MainPanelController
  */
 public class WordInfo {
@@ -77,7 +76,7 @@ public class WordInfo {
 		}
 		if (this.explanation != null) {
 			buffer.append("<br><br>");
-			buffer.append("<h3>释义：</h3>");
+			buffer.append("<h3>\u91ca\u4e49\uff1a</h3>");
 			for (String expla : this.explanation) {
 				buffer.append("<p><strong>");
 				buffer.append(expla);
@@ -86,7 +85,7 @@ public class WordInfo {
 		}
 		if (this.webExpla != null) {
 			buffer.append("<br><br>");
-			buffer.append("<h3>网络释义：</h3>");
+			buffer.append("<h3>\u7f51\u7edc\u91ca\u4e49\uff1a</h3>");
 			for (String[] expla : this.webExpla) {
 				buffer.append("<p><strong>");
 				buffer.append(expla[0]);

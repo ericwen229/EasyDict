@@ -12,13 +12,11 @@ package main.model.dict;
  * checking a word it calculate hash values for this
  * word and check the corresponding bits. If all bits
  * are set, the word has HIGHLY POSSIBLY already appeared.
- * <p>
  * <p>Notice that it goes HIGHLY POSSIBLY here. A
  * word has already appeared will get a certain result
  * while a word hasn't MAY be regarded as APPEARED since
  * the corresponding bits may be set by other words
  * (collision).
- * <p>
  * <p>Basically two factors would affect accuracy:
  * size of bit array and number of hash function list
  * (given that those hash functions are well designed).
@@ -56,10 +54,10 @@ class BloomFilter {
 	// Member functions
 
 	/**
-	 * Class constructor that specifies the size of bit
+	 * Default class constructor that specifies the size of bit
 	 * array and unset each bit
 	 *
-	 * @param        size size of the bit array
+	 * @param size size of the bit array
 	 */
 	BloomFilter(int size) {
 		this.arraySize = size;
@@ -73,7 +71,7 @@ class BloomFilter {
 	 * Mark a string as appeared by setting the bits
 	 * corresponding to hash values of the string
 	 *
-	 * @param        str string to be marked
+	 * @param str string to be marked
 	 */
 	void add(String str) {
 		for (int i = 0; i < hashFuncList.length; ++i) {

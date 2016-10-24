@@ -70,8 +70,8 @@ public class Dict {
 	/**
 	 * Insert word and information
 	 *
-	 * @param        str word to be inserted
-	 * @param        info information of word to be inserted
+	 * @param str  word to be inserted
+	 * @param info information of word to be inserted
 	 */
 	public void insert(String str, WordInfo info) {
 		this.trie.insert(str, info);
@@ -97,7 +97,6 @@ public class Dict {
 	 * to given one and searching in trie. Search can cause repetition
 	 * since multiple edit behaviours can be reciprocal. So here
 	 * {@link BloomFilter} is introduced to eliminate repetition.
-	 * <p>
 	 * <p>Notice that BloomFilter may wrongly assume that a word has
 	 * appeared while it hasn't, but there're DEFINITELY no multiple
 	 * copies of one word in result list.
@@ -125,7 +124,8 @@ public class Dict {
 	 * Search for words that have common prefix with given
 	 * word (including the given word)
 	 *
-	 * @param str string to be searched
+	 * @param str    string to be searched
+	 * @param maxNum maximum number of results
 	 * @return search result list
 	 */
 	public ArrayList<String> searchWithCommonPrefix(String str, int maxNum) {

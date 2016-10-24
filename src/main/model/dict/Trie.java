@@ -136,7 +136,8 @@ class Trie {
 	 * Search for words that have common prefix with given
 	 * word (including the given word)
 	 *
-	 * @param str word to be searched
+	 * @param str    word to be searched
+	 * @param maxNum maximum number of results
 	 * @return search result list
 	 */
 	ArrayList<String> searchWithCommonPrefix(String str, int maxNum) {
@@ -151,11 +152,12 @@ class Trie {
 	 * This is done by first match the given word then traverse
 	 * through every word with given word as prefix.
 	 *
-	 * @param        node current node to be searched
-	 * @param        target target word
-	 * @param        currPos position to be matched in target word
-	 * @param        results search result list
-	 * @param        strBuf string buffer storing DFS path (i.e. part of word)
+	 * @param node    current node to be searched
+	 * @param target  target word
+	 * @param currPos position to be matched in target word
+	 * @param results search result list
+	 * @param strBuf  string buffer storing DFS path (i.e. part of word)
+	 * @param maxNum  maximum number of results
 	 */
 	private void dfsWithCommonPrefix(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int maxNum) {
 		while (currPos < target.length()) { // First match target word
@@ -209,12 +211,12 @@ class Trie {
 	 * in Trie and stay in target), deletion (go forward in target and
 	 * remain in Trie)
 	 *
-	 * @param        node current node to be searched
-	 * @param        target target word
-	 * @param        currPos position to be matched in target word
-	 * @param        results search result list
-	 * @param        strBuf string buffer storing DFS path (i.e. part of word)
-	 * @param        editDist edit distance left
+	 * @param node     current node to be searched
+	 * @param target   target word
+	 * @param currPos  position to be matched in target word
+	 * @param results  search result list
+	 * @param strBuf   string buffer storing DFS path (i.e. part of word)
+	 * @param editDist edit distance left
 	 */
 	private void dfsWithEditDist(TrieNode node, String target, int currPos, ArrayList<String> results, StringBuffer strBuf, int editDist) {
 		boolean targetComplete = currPos == target.length() && editDist == 0;

@@ -23,7 +23,6 @@ import main.model.dict.Dict;
  * Tests of Dict
  *
  * @author ericwen229
- * @see main.model.dict.Dict;
  */
 public class DictTest {
 

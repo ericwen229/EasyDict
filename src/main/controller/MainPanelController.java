@@ -44,7 +44,7 @@ public class MainPanelController implements ListSelectionListener {
 	/**
 	 * Default class constructor that initializes MainPanel reference
 	 *
-	 * @param        mainPanel reference of MainPanel
+	 * @param mainPanel reference of MainPanel
 	 */
 	public MainPanelController(MainPanel mainPanel) {
 		this.mainPanel = mainPanel;
@@ -53,7 +53,7 @@ public class MainPanelController implements ListSelectionListener {
 	/**
 	 * Call back function when list selection event is detected
 	 *
-	 * @param        e list selection event
+	 * @param e list selection event
 	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {

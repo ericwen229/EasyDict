@@ -20,7 +20,7 @@ import main.model.wordinfo.WordInfo;
  * for convenience.
  *
  * @author ericwen229
- * @see            main.model.wordinfo.WordInfo
+ * @see main.model.wordinfo.WordInfo
  * @see main.model.dict.Trie
  */
 class TrieNode {
@@ -148,7 +148,7 @@ class TrieNode {
 	/**
 	 * Add information to current node (i.e. to the word that ends here)
 	 *
-	 * @param        info information to be added
+	 * @param info information to be added
 	 */
 	void addInfo(WordInfo info) {
 		this.info = info;
