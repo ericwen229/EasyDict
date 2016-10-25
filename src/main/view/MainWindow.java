@@ -26,11 +26,6 @@ public class MainWindow extends JFrame {
 	 */
 	private MainPanel mainPanel;
 
-	/**
-	 * Menu Bar
-	 */
-	private MenuBar menuBar;
-
 	// ================================
 	// Member functions
 
@@ -42,9 +37,7 @@ public class MainWindow extends JFrame {
 		super();
 
 		this.mainPanel = new MainPanel();
-		this.menuBar = new MenuBar();
 
-		this.setJMenuBar(this.menuBar);
 		this.setLayout(new BorderLayout());
 		this.add(this.mainPanel, BorderLayout.CENTER);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
