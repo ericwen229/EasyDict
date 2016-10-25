@@ -199,7 +199,7 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
 			String word = this.inputBox.getText();
 			Dict d = Dict.createDict();
 			ArrayList<String> preciseResult = d.searchWithCommonPrefix(word, this.maxNumWithCommonPrefix);
-			ArrayList<String> fuzzyResult = d.searchWithEditDist(word, 1);
+			ArrayList<String> fuzzyResult = d.searchWithEditDist(word, 2);
 			ResultListController resultListController = new ResultListController(this.resultList);
 			resultListController.setPreciseResult(preciseResult);
 			resultListController.setFuzzyResult(fuzzyResult);
