@@ -4,6 +4,7 @@ package main.view;
 // Built-in modules
 
 import javax.swing.JTabbedPane;
+import javax.swing.JLabel;
 
 // ================================
 // User-defined modules
@@ -40,7 +41,8 @@ public class ResultPanel extends JTabbedPane {
 	ResultPanel() {
 		super(JTabbedPane.TOP, JTabbedPane.WRAP_TAB_LAYOUT);
 
-		this.addTab("Welcome", null);
+		this.add("", null);
+		this.setWelcomeTab();
 		this.isWelcome = true;
 		this.addMouseListener(new ResultPanelController(this));
 	}
@@ -56,7 +58,9 @@ public class ResultPanel extends JTabbedPane {
 	 */
 	public void setWelcomeTab() { // TODO: add user guide here
 		this.setTitleAt(0, "Welcome");
-		this.setComponentAt(0, null);
+		this.setComponentAt(0, new JLabel("<html>Enter word in input box to get results<br />" +
+				"Single-click a result to get detailed information<br />" +
+				"Double-click a tab to close a tab</html>", JLabel.CENTER));
 	}
 
 	/**
