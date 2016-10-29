@@ -6,6 +6,8 @@ package main;
 import java.io.File;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 // ================================
 // User-defined modules
 
@@ -68,6 +70,7 @@ public class EasyDict {
 				d.insert(word, info);
 			}
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error reading file! Aborting...");
 			System.exit(-1);
 		}
 	}
