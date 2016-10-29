@@ -68,7 +68,7 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
 	/**
 	 * Maximum result number searched with common prefix
 	 */
-	private final int maxNumWithCommonPrefix = 32;
+	private final int maxNumWithCommonPrefix = 128;
 
 	// ================================
 	// Member functions
