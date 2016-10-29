@@ -6,8 +6,6 @@ package main;
 import java.io.File;
 import java.util.Scanner;
 
-import javax.swing.UIManager;
-
 // ================================
 // User-defined modules
 
