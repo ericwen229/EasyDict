@@ -16,7 +16,7 @@ import main.view.ResultList;
 /**
  * Update ResultList content
  */
-class ResultListController {
+public class ResultListController {
 
 	// ================================
 	// Members

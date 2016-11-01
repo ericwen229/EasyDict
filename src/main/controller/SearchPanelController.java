@@ -198,9 +198,14 @@ public class SearchPanelController implements FocusListener, DocumentListener, P
 		if (!this.isEmpty) { // Not empty then search
 			String word = this.inputBox.getText();
 			Dict d = Dict.createDict();
+			ResultListController resultListController = new ResultListController(this.resultList);
+			//resultListController.clearPreciseResult();
+			//resultListController.clearFuzzyResult();
+
+			// TODO: use SwingWorker here
 			ArrayList<String> preciseResult = d.searchWithCommonPrefix(word, this.maxNumWithCommonPrefix);
 			ArrayList<String> fuzzyResult = d.searchWithEditDist(word, 2);
-			ResultListController resultListController = new ResultListController(this.resultList);
+
 			resultListController.setPreciseResult(preciseResult);
 			resultListController.setFuzzyResult(fuzzyResult);
 			lastSuccess = (preciseResult.size() > 0); // Last search success
