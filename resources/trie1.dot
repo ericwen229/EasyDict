@@ -1,4 +1,0 @@
-digraph trie {
-	t_ -> t_a;
-}
-

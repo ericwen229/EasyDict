@@ -1,5 +1,0 @@
-digraph trie {
-	t_ -> t_a;
-	t_a -> t_ab;
-}
-

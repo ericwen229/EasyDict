@@ -35,7 +35,7 @@ public class EasyDict {
 	 */
 	public static void main(String[] args) {
 		String dictFilePath = "resources/dict.txt";
-		String dotFilePath = "resources/trie.dot";
+		String dotFilePath = "visualize/trie.dot";
 		EasyDict.importDict(dictFilePath);
 		EasyDict.visualize(dotFilePath);
 		// MainWindow w = new MainWindow();

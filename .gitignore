@@ -1,6 +1,11 @@
 .DS_Store
+
 out/*
 !out/artifacts
 .idea/*
+
 *.iml
+*.png
+*.dot
+visualize/close.txt
 
