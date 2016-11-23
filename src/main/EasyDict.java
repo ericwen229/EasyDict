@@ -4,6 +4,7 @@ package main;
 // Built-in modules
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -34,9 +35,11 @@ public class EasyDict {
 	 */
 	public static void main(String[] args) {
 		String dictFilePath = "resources/dict.txt";
+		String dotFilePath = "resources/trie.dot";
 		EasyDict.importDict(dictFilePath);
-		MainWindow w = new MainWindow();
-		w.setTitle("EasyDict");
+		EasyDict.visualize(dotFilePath);
+		// MainWindow w = new MainWindow();
+		// w.setTitle("EasyDict");
 	}
 
 	/**
@@ -71,6 +74,25 @@ public class EasyDict {
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error reading file! Aborting...");
+			System.exit(-1);
+		}
+	}
+
+	/**
+	 * Visualize trie
+	 *
+	 * @param dotFilePath path of .dot file
+	 */
+	private static void visualize(String dotFilePath) {
+		Dict d = Dict.createDict();
+		try {
+			FileWriter dotFile = new FileWriter(dotFilePath);
+			dotFile.write("digraph trie {\n");
+			d.visualize(dotFile);
+			dotFile.write("}\n");
+			dotFile.close();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error creating file! Aborting...");
 			System.exit(-1);
 		}
 	}

@@ -1,0 +1,35 @@
+digraph trie {
+	t_ -> t_a;
+	t_a -> t_ab;
+	t_ab -> t_aba;
+	t_aba -> t_abac;
+	t_abac -> t_aback;
+	t_abac -> t_abacu;
+	t_abacu -> t_abacus;
+	t_aba -> t_aban;
+	t_aban -> t_aband;
+	t_aband -> t_abando;
+	t_abando -> t_abandon;
+	t_abandon -> t_abandone;
+	t_abandone -> t_abandoned;
+	t_abandoned -> t_abandonedB;
+	t_abandonedB -> t_abandonedBp;
+	t_abandonedBp -> t_abandonedBpr;
+	t_abandonedBpr -> t_abandonedBpro;
+	t_abandonedBpro -> t_abandonedBprop;
+	t_abandonedBprop -> t_abandonedBprope;
+	t_abandonedBprope -> t_abandonedBproper;
+	t_abandonedBproper -> t_abandonedBpropert;
+	t_abandonedBpropert -> t_abandonedBproperty;
+	t_abandon -> t_abandonm;
+	t_abandonm -> t_abandonme;
+	t_abandonme -> t_abandonmen;
+	t_abandonmen -> t_abandonment;
+	t_abandonment -> t_abandonmentB;
+	t_abandonmentB -> t_abandonmentBc;
+	t_abandonmentBc -> t_abandonmentBch;
+	t_abandonmentBch -> t_abandonmentBcha;
+	t_abandonmentBcha -> t_abandonmentBchar;
+	t_abandonmentBchar -> t_abandonmentBcharg;
+}
+

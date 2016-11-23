@@ -3,6 +3,7 @@ package main.model.dict;
 // ================================
 // Built-in modules
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 // ================================
@@ -130,6 +131,10 @@ public class Dict {
 	 */
 	public ArrayList<String> searchWithCommonPrefix(String str, int maxNum) {
 		return this.trie.searchWithCommonPrefix(str, maxNum);
+	}
+
+	public void visualize(FileWriter dotFile) throws Exception {
+		this.trie.visualize(dotFile);
 	}
 
 }

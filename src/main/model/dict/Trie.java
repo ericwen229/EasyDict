@@ -3,6 +3,7 @@ package main.model.dict;
 // ================================
 // Built-in modules
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 // ================================
@@ -279,6 +280,36 @@ class Trie {
 				dfsWithEditDist(nextNode, target, currPos + 1, results, strBuf, 0);
 				strBuf.deleteCharAt(strBuf.length() - 1);
 			}
+		}
+
+	}
+
+	void visualize(FileWriter dotFile) throws Exception {
+		dfsVisualize(this.root, new StringBuffer("t_"), dotFile);
+	}
+
+	private void dfsVisualize(TrieNode node, StringBuffer curr, FileWriter dotFile) throws Exception {
+		TrieNode.TrieNodeIterator nodeIterator = node.createIterator();
+		while (nodeIterator.hasNext()) {
+			char ch = nodeIterator.getNextChar();
+			TrieNode nextNode = nodeIterator.next();
+			String currStr = curr.toString();
+			if (ch == ' ') {
+				ch = 'B';
+			}
+			else if (ch == '-') {
+				ch = 'H';
+			}
+			curr.append(ch);
+			String nextStr = curr.toString();
+			StringBuffer lineBuf = new StringBuffer("\t");
+			lineBuf.append(currStr);
+			lineBuf.append(" -> ");
+			lineBuf.append(nextStr);
+			lineBuf.append(";\n");
+			dotFile.write(lineBuf.toString());
+			dfsVisualize(nextNode, curr, dotFile);
+			curr.deleteCharAt(curr.length() - 1);
 		}
 	}
 
